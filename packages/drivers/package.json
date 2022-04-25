@@ -1,0 +1,19 @@
+{
+  "name": "drivers",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "tkssharma <tarun.softengg@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/drivers.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}
