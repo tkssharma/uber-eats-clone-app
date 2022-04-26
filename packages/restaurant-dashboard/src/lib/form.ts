@@ -62,8 +62,6 @@ export function enhance(
 				invalidate(url.href);
 			} else if (error) {
 				error({ data, form, error: null, response });
-			} else {
-				console.error(await response.text());
 			}
 		} catch (e: unknown) {
 			if (error && e instanceof Error) {
