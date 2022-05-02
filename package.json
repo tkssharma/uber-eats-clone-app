@@ -35,5 +35,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.0"
   }
 }
