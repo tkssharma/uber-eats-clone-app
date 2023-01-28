@@ -15,5 +15,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "dd": "^0.26.0"
   }
 }

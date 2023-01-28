@@ -22,5 +22,8 @@
   },
   "bugs": {
     "url": "https://github.com/tkssharma/uber-eats-clone-app/issues"
+  },
+  "dependencies": {
+    "dd": "^0.26.0"
   }
 }

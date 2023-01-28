@@ -14,11 +14,11 @@ module.exports = {
         "base-gray-2": "#979797",
         "base-gray-3": "#CACACA",
         "base-gray-4": "#F2F2F2",
-        "base-gray-5": "#F5F5F5"
+        "base-gray-5": "#F5F5F5",
       },
       fontFamily: {
         source: ["source-sans-pro", ...defaultTheme.fontFamily.sans],
-      }
+      },
     },
   },
   variants: {
@@ -26,7 +26,7 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/forms")({
-      strategy: 'class',
+      strategy: "class",
     }),
   ],
 };
