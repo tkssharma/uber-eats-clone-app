@@ -1,36 +1,24 @@
 {
-  "name": "@tkssharma/uber-eats",
-  "version": "1.0.0",
-  "description": "> TODO: description",
-  "author": "tkssharma <tarun.softengg@gmail.com>",
-  "homepage": "https://github.com/tkssharma/uber-eats-clone-app#readme",
-  "license": "ISC",
+  "name": "uber-eats",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "echo 'build'",
-    "start": "next start"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.5.0",
-    "date-fns": "^2.11.1",
-    "gray-matter": "^4.0.2",
-    "next": "latest",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-hook-form": "^6.15.8",
-    "remark": "^14.0.1",
-    "remark-html": "^15.0.0",
-    "tailwindcss": "^3.0.24"
-  },
-  "devDependencies": {
-    "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.30",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.2",
-    "autoprefixer": "^10.4.5",
-    "next-images": "^1.8.4",
-    "postcss": "^8.4.13",
-    "typescript": "^4.6.4"
+    "@next/font": "13.1.6",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.27",
+    "@types/react-dom": "18.0.10",
+    "eslint": "8.33.0",
+    "eslint-config-next": "13.1.6",
+    "next": "13.1.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.42.1",
+    "typescript": "4.9.4"
   }
 }

@@ -5,6 +5,7 @@
     "bootstrap": "lerna exec npm i",
     "bootstrap:ci": "lerna exec npm ci -- --ignore-scripts",
     "build": "lerna run build",
+    "test": "lerna run test",
     "clean": "lerna run clean",
     "lint": "eslint . --ext .ts --fix --quiet",
     "prepare": "husky install",
