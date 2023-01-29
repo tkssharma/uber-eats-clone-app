@@ -2,8 +2,6 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna exec npm i",
-    "bootstrap:ci": "lerna exec npm ci -- --ignore-scripts",
     "build": "lerna run build",
     "test": "lerna run test",
     "clean": "lerna run clean",
