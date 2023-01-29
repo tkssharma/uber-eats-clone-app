@@ -5,6 +5,7 @@ on:
     branches:
       - development
       - main
+      - master
 
 jobs:
   publish:
