@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const drivers = require('..');
+const drivers = require("..");
 
-describe('drivers', () => {
-    it('needs tests');
+describe("drivers", () => {
+  it("needs tests");
 });
