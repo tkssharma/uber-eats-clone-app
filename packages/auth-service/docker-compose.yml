@@ -1,0 +1,12 @@
+version: '3.6'
+services:
+  node:
+    build: .
+    volumes:
+      - .:/app
+    env_file:
+      - ./.env
+
+  postgres:
+    image: postgres
+    restart: unless-stopped

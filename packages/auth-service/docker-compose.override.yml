@@ -1,0 +1,22 @@
+version: '3'
+services:
+  node:
+    command: npm run start
+    environment:
+      NPM_INSTALL: DISABLE
+      TYPEORM_MIGRATION: ENABLE
+    ports:
+      - 3000:3000
+
+  postgres:
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="auth-api","auth-api-testing"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - auth_api_data:/data/postgres
+    ports:
+      - 5434:5432
+volumes:
+  auth_api_data: {}

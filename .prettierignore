@@ -6,4 +6,7 @@ package-lock.json
 ./package.json
 tmp
 ./**/.next
+
+*.yml
+*.json
 *.next
