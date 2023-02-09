@@ -1,13 +1,5 @@
 version: '3'
 services:
-  node:
-    command: npm run start
-    environment:
-      NPM_INSTALL: DISABLE
-      TYPEORM_MIGRATION: ENABLE
-    ports:
-      - 3000:3000
-
   postgres:
     environment:
       - POSTGRES_USER=api

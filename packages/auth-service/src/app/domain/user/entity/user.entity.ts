@@ -1,0 +1,56 @@
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+
+@Entity("users")
+export class UserEntity extends BaseEntity {
+  @PrimaryGeneratedColumn("uuid")
+  public id!: string;
+
+  @Column({ type: "varchar", length: 255, select: true, unique: true })
+  public email!: string;
+
+  @Column({ type: "varchar", length: 500 })
+  public password!: string;
+
+  @Column({ type: "varchar", length: 500, nullable: true })
+  public last_name!: string;
+
+  @Column({ type: "varchar", length: 500, nullable: true })
+  public first_name!: string;
+
+  @Column({ type: "varchar", length: 500, nullable: true })
+  public name!: string;
+
+  @Column({ type: "varchar", length: 500, nullable: true })
+  public picture_url!: string;
+
+  @Column({ type: "jsonb", nullable: true })
+  public permissions!: string[];
+
+  // root-user, admin-user
+  // restaurant-admin, restaurant-user
+  // read-user
+
+  @Column({ type: "jsonb", default: null })
+  public passwordReset!: any;
+
+  @CreateDateColumn({
+    type: "timestamptz",
+    default: () => "CURRENT_TIMESTAMP",
+    select: true,
+  })
+  public created_at!: Date;
+
+  @UpdateDateColumn({
+    type: "timestamptz",
+    default: () => "CURRENT_TIMESTAMP",
+    select: true,
+  })
+  public updated_at!: Date;
+}
