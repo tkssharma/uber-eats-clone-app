@@ -9,7 +9,8 @@ export interface ConfigSwagger {
 
 export interface AuthConfig {
   expiresIn: number;
-  secret: string;
+  access_token_secret: string;
+  refresh_token_secret: string;
 }
 
 export interface ConfigData {

@@ -1,4 +1,5 @@
 import {
+  ForbiddenException,
   forwardRef,
   Inject,
   Injectable,
@@ -33,33 +34,63 @@ export class AuthService {
     isMatch = await this.comparePassword(password, user.password);
 
     if (isMatch) {
-      return await this.createToken(user);
+      const data = await this.createToken(user);
+      await this.updateRefreshToken(user.email, data.refresh_token);
+      return data;
     } else {
       throw new NotFoundException(`user with email password not found`);
     }
   }
+
+  private async updateRefreshToken(email: string, refToken: string) {
+    await this.usersService.updateRefreshTokenByEmail(email, refToken);
+  }
   public async validateJwtPayload(payload: JwtPayload) {
     return await this.usersService.findOneByEmail(payload.email);
   }
-  public async createToken(user: UserEntity) {
-    let expiration: Date | undefined;
-    const expiresIn = this.configService.get().auth.expiresIn;
-    // it should be in seconds
-    if (expiresIn) {
-      expiration = new Date();
-      expiration.setDate(expiration.getTime() + expiresIn * 1000);
+
+  public async logout(user: UserEntity) {
+    const { id, refresh_token, email } = user;
+    await this.usersService.updateRefreshTokenByEmail(user.email, null);
+  }
+
+  public async refreshToken(user: UserEntity) {
+    const { id, refresh_token, email } = user;
+    const userData = await this.usersService.findOneByEmail(email);
+    if (!userData) {
+      throw new ForbiddenException();
     }
+    const isMatchFound = await bcrypt.compare(
+      refresh_token,
+      userData.refresh_token
+    );
+    if (!isMatchFound) {
+      throw new ForbiddenException();
+    }
+    const tokens = await this.createToken(user);
+    await this.updateRefreshToken(user.email, tokens.refresh_token);
+    return tokens;
+  }
+  public async createToken(user: UserEntity) {
     const data: JwtPayload = {
       userId: user.id,
       email: user.email,
       permissions: user.permissions,
-      expiration,
     };
-
-    const jwt = this.jwtService.sign(data);
+    const [accessToken, refreshToken] = await Promise.all([
+      this.jwtService.signAsync(data, {
+        secret: this.configService.get().auth.access_token_secret,
+        expiresIn: "15m",
+      }),
+      this.jwtService.signAsync(data, {
+        secret: this.configService.get().auth.refresh_token_secret,
+        expiresIn: "7d",
+      }),
+    ]);
     return {
       ...data,
-      access_token: jwt,
+      access_token: accessToken,
+      refresh_token: refreshToken,
     };
   }
   private async comparePassword(enteredPassword, dbPassword) {

@@ -53,7 +53,7 @@ export class FindUserDto {
   @ApiProperty({
     description: "email",
     example: "demo@gmail.com",
-    required: true,
+    required: false,
   })
   @IsOptional()
   @IsString()
@@ -62,26 +62,26 @@ export class FindUserDto {
 
   @ApiProperty({
     description: "name",
-    example: "name",
-    required: true,
+    example: "",
+    required: false,
   })
   @IsOptional()
   @IsString()
   public name!: string;
 
   @ApiProperty({
-    description: "name",
-    example: "name",
-    required: true,
+    description: "first_name",
+    example: "",
+    required: false,
   })
   @IsOptional()
   @IsString()
   public first_name!: string;
 
   @ApiProperty({
-    description: "name",
-    example: "name",
-    required: true,
+    description: "last_name",
+    example: "",
+    required: false,
   })
   @IsOptional()
   @IsString()

@@ -35,7 +35,10 @@ import { Logger } from "../../../logger/logger";
 import { AuthService } from "./auth.service";
 import { UserSigInDto } from "./dto/auth-request.dto";
 import { UserSignInResponseDto } from "./dto/auth-response.dto";
-import { JwtAuthGuard } from "./guards/admin.guard";
+import { RefreshTokenGuard } from "./guards/refresh_token.guard";
+import { AccessTokenGuard } from "./guards/access_token.guard";
+import { RoleAllowed } from "./guards/role-decorator";
+import { Roles } from "./guards/roles";
 
 @ApiBearerAuth("authorization")
 @Controller("auth")
@@ -70,13 +73,22 @@ export class AuthController {
     return this.service.validateUserByPassword(body);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AccessTokenGuard)
+  @HttpCode(HttpStatus.OK)
+  @ApiConsumes("application/json")
+  @Post("/logout")
+  public async logout(@Req() req: any) {
+    const user = req.user;
+    await this.service.logout(user);
+    return null;
+  }
+
+  @UseGuards(RefreshTokenGuard)
   @HttpCode(HttpStatus.OK)
   @ApiConsumes("application/json")
   @Post("/refresh")
   public async refreshToken(@Req() req: any) {
     const user = req.user;
-    const newToken = await this.service.createToken(user);
-    return newToken;
+    return await this.service.refreshToken(user);
   }
 }

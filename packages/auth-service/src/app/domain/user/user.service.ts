@@ -3,12 +3,13 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { ConfigService } from "../../../config/config.service";
 import { Logger } from "../../../logger/logger";
 import { Like, Repository } from "typeorm";
+import * as bcrypt from "bcrypt";
+
 import {
   fieldsToUpdateDto,
   FindUserDto,
   UserSignupDto,
 } from "./dto/user-request.dto";
-import * as bcrypt from "bcrypt";
 import { UserEntity } from "./entity/user.entity";
 import { AuthService } from "../auth/auth.service";
 
@@ -76,6 +77,21 @@ export class UserService {
         id,
       },
     });
+  }
+
+  hashData(token: string) {
+    return bcrypt.hash(token, 10);
+  }
+  async updateRefreshTokenByEmail(email: string, refToken: string) {
+    if (!refToken) {
+      const user = await this.findOneByEmail(email.toLowerCase());
+      const saveEntity = { ...user, refresh_token: null };
+      return await this.userRepo.save(saveEntity);
+    }
+    const hashedToken = await this.hashData(refToken);
+    const user = await this.findOneByEmail(email.toLowerCase());
+    const saveEntity = { ...user, refresh_token: hashedToken };
+    return await this.userRepo.save(saveEntity);
   }
 
   async findOneByEmail(email: string): Promise<UserEntity | null> {

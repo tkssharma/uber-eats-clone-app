@@ -8,14 +8,14 @@ import { AuthService } from "../auth.service";
 // Bearer <>//
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class AccessTokenJwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     private readonly authService: AuthService,
     private readonly configService: ConfigService
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: configService.get().auth.secret,
+      secretOrKey: configService.get().auth.access_token_secret,
     });
   }
   async validate(payload: JwtPayload) {

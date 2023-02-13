@@ -8,7 +8,8 @@ export const DEFAULT_CONFIG: ConfigData = {
   },
   auth: {
     expiresIn: 30000,
-    secret: "",
+    access_token_secret: "",
+    refresh_token_secret: "",
   },
   swagger: {
     username: "",

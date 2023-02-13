@@ -22,7 +22,8 @@ export class ConfigService {
       logLevel: env.LOG_LEVEL,
       auth: {
         expiresIn: Number(env.TOKEN_EXPIRY),
-        secret: env.JWT_TOKEN_SECRET,
+        access_token_secret: env.JWT_ACCESS_TOKEN_SECRET,
+        refresh_token_secret: env.JWT_REFRESH_TOKEN_SECRET,
       },
     };
   }
