@@ -9,6 +9,6 @@ services:
       - ./docker-utils:/docker-entrypoint-initdb.d
       - auth_api_data:/data/postgres
     ports:
-      - 5434:5432
+      - 5436:5432
 volumes:
   auth_api_data: {}
