@@ -22,6 +22,7 @@
     "conventional-changelog-cli": "^2.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "fbjs-scripts": "^3.0.1",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
@@ -34,5 +35,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "prettier-plugin-svelte": "^2.9.0"
   }
 }

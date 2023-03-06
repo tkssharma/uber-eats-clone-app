@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,700&display=swap');
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.orderContainer::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.header-banner {
+  background-image: url('../../public/assets/bg.png');
+  height: 600px !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.banner {
+  background-image: url('../../public/assets/bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+.bg-primary {
+  background: #5fb70a;
+}
+.bg-primary-dark {
+  background: #ce193c;
+}
+.text-primary {
+  color: #f91944;
+}
+.border-primary {
+  border: 1px solid #f91944;
+}
+
+/* Glassmorphism card effect */
+.glass {
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.57);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
