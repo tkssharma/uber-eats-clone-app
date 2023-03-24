@@ -2,17 +2,11 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build": "lerna run build",
-    "test": "lerna run test",
-    "clean": "lerna run clean",
     "lint": "node node_modules/.bin/prettier --check \"**/*.{js,json,ts,yml,yaml}\"",
     "prepare": "husky install",
     "prettier": "node node_modules/.bin/prettier --check \"**/*.{js,json,ts,yml,yaml}\"",
     "prettier:write": "node node_modules/.bin/prettier --write \"**/*.{js,json,ts,yml,yaml}\""
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
     "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",
@@ -21,13 +15,15 @@
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.2.2",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.6.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "fbjs-scripts": "^3.0.1",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
-    "lerna": "^6.4.1",
-    "prettier": "^2.5.1",
+    "nx": "^15.8.8",
+    "prettier": "^2.8.6",
     "prettier-plugin-svelte": "^2.9.0",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.4"
