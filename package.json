@@ -2,10 +2,10 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "lint": "node node_modules/.bin/prettier --check \"**/*.{js,json,ts,yml,yaml}\"",
+    "lint": "node node_modules/prettier/bin-prettier --check \"**/*.{js,json,ts,yml,yaml}\"",
     "prepare": "husky install",
-    "prettier": "node node_modules/.bin/prettier --check \"**/*.{js,json,ts,yml,yaml}\"",
-    "prettier:write": "node node_modules/.bin/prettier --write \"**/*.{js,json,ts,yml,yaml}\""
+    "prettier": "node node_modules/prettier/bin-prettier --check '**/*.{js,json,ts,yml,yaml}'",
+    "prettier:write": "node node_modules/prettier/bin-prettier --write \"**/*.{js,json,ts,yml,yaml}\""
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.1",
