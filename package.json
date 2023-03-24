@@ -2,6 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "build-all":"pnpm run --parallel -r build",
+    "nx-build-all":"nx run-many --target=build",
     "lint": "node node_modules/prettier/bin-prettier --check \"**/*.{js,json,ts,yml,yaml}\"",
     "prepare": "husky install",
     "prettier": "node node_modules/prettier/bin-prettier --check '**/*.{js,json,ts,yml,yaml}'",
@@ -19,6 +21,7 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-config-next": "13.1.5",
     "fbjs-scripts": "^3.0.1",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
