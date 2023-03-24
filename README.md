@@ -39,49 +39,6 @@ $ git clone git@github.com:tkssharma/UberEats-Clone-Full-Stack.git
 $ cd UberEats-Clone-Full-Stack
 
 # Install dependencies
-$ lerna run bootstrap
+$ pnpm i
 
-# Run the app
-$ lerna run build
 ```
-
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
-
-### Architecture
-
-We are building different microservices for uber eats clone app.
-![](./arch//main.png)
-
-### Toolings
-
-We will be using all different latest tech stack and all this will also add learning as we will be using Next JS, Svelte Kit and many other things first time on my channel.
-
-![](./arch/tech.png)
-
-### Services
-
-| Service            |   Tools    | Deployment | setup |
-| :----------------- | :--------: | ---------: | ----: |
-| Auth Service       |   nestjs   |            |       |
-| Gateway Service    |   nestjs   |            |       |
-| Restaurant Service |   nestjs   |            |       |
-| User Portal        |  Next JS   |            |       |
-| Restaurant Portal  | Svelte Kit |            |       |
-
-### Database
-
-- ERD per service coming up
-
-### Integration
-
-![](./arch//core.png)
-
-
-### Local Setup
-
-
-
-### Deployment
-
-
-### Trouble shooting and Notes
