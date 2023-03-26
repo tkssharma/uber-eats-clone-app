@@ -22,7 +22,7 @@ const formatter = winston.format((info) => {
 let Logger = class Logger {
     constructor() {
         this.logger = winston.createLogger({
-            level: 'info',
+            level: "info",
             format: formatter(),
         });
         this.logger.add(new winston.transports.Console({

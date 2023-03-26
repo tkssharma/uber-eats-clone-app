@@ -15,13 +15,13 @@ let LoggerMiddleware = class LoggerMiddleware {
         const id = req.headers["x-request-id"]
             ? req.headers["x-request-id"]
             : (0, uuid_1.v4)();
-        this.logger.setDefaultMeta(id);
+        this.logger && this.logger.setDefaultMeta(id);
         const span = req.headers["x-span"] || "0";
         req.correlationId = id;
         req.parentSpan = span;
         req.span = span;
         next();
-        res.on("close", () => this.logger.http(this.generateLogMessage(req, res, Date.now() - before)));
+        res.on("close", () => this.logger && this.logger.http(this.generateLogMessage(req, res, Date.now() - before)));
     }
     getResponseSize(res) {
         const sizeRaw = res.getHeader("Content-Length");

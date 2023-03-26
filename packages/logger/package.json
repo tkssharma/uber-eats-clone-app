@@ -28,11 +28,10 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "@nestjs/common": "^8.0.0",
+    "@nestjs/common": "^9.0.0",
     "@nestjs/config": "2.3.1",
-    "@nestjs/core": "^8.0.0",
-    "@nestjs/microservices": "^8.0.0",
-    "@nestjs/testing": "^8.0.0",
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/testing": "^9.0.0",
     "@types/jest": "27.0.2",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.45",

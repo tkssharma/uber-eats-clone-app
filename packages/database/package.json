@@ -27,13 +27,12 @@
     "@eats/logger": "1.0.0"
   },
   "devDependencies": {
-    "@nestjs/typeorm": "8.0.2",
+    "@nestjs/typeorm": "^9.0.1",
     "typeorm": "^0.3.12",
-    "@nestjs/common": "^8.0.0",
+    "@nestjs/common": "^9.0.0",
     "@nestjs/config": "2.3.1",
-    "@nestjs/core": "^8.0.0",
-    "@nestjs/microservices": "^8.0.0",
-    "@nestjs/testing": "^8.0.0",
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/testing": "^9.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "27.0.2",
     "@types/node": "^17.0.45",

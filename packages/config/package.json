@@ -25,11 +25,11 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@nestjs/common": "^8.0.0",
-    "@nestjs/microservices": "^8.0.0",
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/microservices": "^9.0.0",
     "@nestjs/config": "2.3.1",
-    "@nestjs/core": "^8.0.0",
-    "@nestjs/testing": "^8.0.0",
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/testing": "^9.0.0",
     "@types/jest": "27.0.2",
     "@types/node": "^17.0.8",
     "@types/uuid": "^8.3.4",
