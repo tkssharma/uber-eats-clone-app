@@ -8,10 +8,13 @@ import * as bcrypt from "bcrypt";
 import {
   fieldsToUpdateDto,
   FindUserDto,
+  UpdateUserByIdDto,
+  UpdateUserPermissionBodyDto,
   UserSignupDto,
 } from "./dto/user-request.dto";
 import { UserEntity } from "./entity/user.entity";
 import { AuthService } from "../auth/auth.service";
+import { NotFoundException } from "@nestjs/common";
 
 @Injectable()
 export class UserService {
@@ -114,6 +117,23 @@ export class UserService {
       ],
     });
     return users;
+  }
+
+  async assignUserPermissions(
+    param: UpdateUserByIdDto,
+    payload: UpdateUserPermissionBodyDto
+  ) {
+    const { id } = param;
+    const user = await this.userRepo.findOne({
+      where: {
+        id,
+      },
+    });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    user.permissions = payload.permissions;
+    return await user.save();
   }
 
   async create(userInput: UserSignupDto): Promise<UserEntity> {

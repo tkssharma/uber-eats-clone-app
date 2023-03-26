@@ -24,21 +24,37 @@ import {
   ApiBearerAuth,
   ApiConsumes,
   ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiHeader,
   ApiInternalServerErrorResponse,
   ApiNoContentResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiUnprocessableEntityResponse,
 } from "@nestjs/swagger";
 import { Logger } from "@eats/logger";
 import { AccessTokenGuard } from "../auth/guards/access_token.guard";
 import { RoleAllowed } from "../auth/guards/role-decorator";
 import { RolesGuard } from "../auth/guards/role-guard";
 import { Roles } from "../auth/guards/roles";
-import { FindUserDto, UserSignupDto } from "./dto/user-request.dto";
+import {
+  FindUserDto,
+  UpdateUserByIdDto,
+  UpdateUserPermissionBodyDto,
+  UserSignupDto,
+} from "./dto/user-request.dto";
 import { UserSignupResponseDto } from "./dto/user-response.dto";
 import { UserService } from "./user.service";
+import { User } from "../auth/guards/user";
+import { UserEntity } from "./entity/user.entity";
+import {
+  NO_ENTITY_FOUND,
+  UNAUTHORIZED_REQUEST,
+  BAD_REQUEST,
+  INTERNAL_SERVER_ERROR,
+} from "src/app/app.constants";
 
 // user signup
 // fetch user info
@@ -91,12 +107,63 @@ export class UserController {
 
   @UseGuards(AccessTokenGuard, RolesGuard)
   @RoleAllowed(Roles["system-admin"])
-  @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ type: UserSignupResponseDto, description: "" })
-  @ApiOperation({ description: "find users based on props " })
+  @ApiConsumes("application/json")
+  @ApiNotFoundResponse({ description: NO_ENTITY_FOUND })
+  @ApiForbiddenResponse({ description: UNAUTHORIZED_REQUEST })
+  @ApiUnprocessableEntityResponse({ description: BAD_REQUEST })
+  @ApiInternalServerErrorResponse({ description: INTERNAL_SERVER_ERROR })
+  @ApiOkResponse({ description: "assign permissions" })
+  @ApiOperation({
+    description: "assign permission to user",
+  })
+  @ApiOkResponse({
+    description: "assign permissions to the user",
+  })
+  @ApiConsumes("application/json")
+  @Put("/assign-permissions/:id")
+  public async assignUserPermissions(
+    @Param() param: UpdateUserByIdDto,
+    @Body() payload: UpdateUserPermissionBodyDto
+  ) {
+    return this.service.assignUserPermissions(param, payload);
+  }
+
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @RoleAllowed(Roles["system-admin"])
+  @ApiConsumes("application/json")
+  @ApiNotFoundResponse({ description: NO_ENTITY_FOUND })
+  @ApiForbiddenResponse({ description: UNAUTHORIZED_REQUEST })
+  @ApiUnprocessableEntityResponse({ description: BAD_REQUEST })
+  @ApiInternalServerErrorResponse({ description: INTERNAL_SERVER_ERROR })
+  @ApiOkResponse({ description: "users returned successfully" })
+  @ApiOperation({
+    description: "get all Users",
+  })
+  @ApiOkResponse({
+    description: "return users details",
+  })
   @ApiConsumes("application/json")
   @Get("/")
   public async allUsers() {
     return this.service.getAllUsers();
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @HttpCode(HttpStatus.OK)
+  @ApiConsumes("application/json")
+  @ApiNotFoundResponse({ description: NO_ENTITY_FOUND })
+  @ApiForbiddenResponse({ description: UNAUTHORIZED_REQUEST })
+  @ApiUnprocessableEntityResponse({ description: BAD_REQUEST })
+  @ApiInternalServerErrorResponse({ description: INTERNAL_SERVER_ERROR })
+  @ApiOkResponse({ description: "user returned successfully" })
+  @ApiOperation({
+    description: "get current session User",
+  })
+  @ApiOkResponse({
+    description: "return session user details",
+  })
+  @Get("/")
+  public async getUser(@User() user: UserEntity) {
+    return user;
   }
 }

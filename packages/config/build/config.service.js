@@ -22,7 +22,7 @@ let ConfigService = class ConfigService {
                 expiresIn: Number(env.TOKEN_EXPIRY),
                 access_token_secret: env.JWT_ACCESS_TOKEN_SECRET,
                 refresh_token_secret: env.JWT_REFRESH_TOKEN_SECRET,
-            }
+            },
         };
     }
     parseDBConfig(env, defaultConfig) {

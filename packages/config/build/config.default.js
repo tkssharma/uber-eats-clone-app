@@ -16,5 +16,5 @@ exports.DEFAULT_CONFIG = {
         username: "",
         password: "",
     },
-    logLevel: ""
+    logLevel: "",
 };

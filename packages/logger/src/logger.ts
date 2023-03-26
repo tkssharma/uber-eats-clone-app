@@ -2,7 +2,6 @@ import { Injectable, LoggerService } from "@nestjs/common";
 import * as moment from "moment";
 import * as winston from "winston";
 
-import { ConfigService } from "@eats/config";
 import { isLogLevel, LogLevel } from "./loglevel";
 
 const formatter = winston.format((info) => {
@@ -25,9 +24,9 @@ const formatter = winston.format((info) => {
 export class Logger implements LoggerService {
   public logger: winston.Logger;
 
-  constructor(private configService: ConfigService) {
+  constructor() {
     this.logger = winston.createLogger({
-      level: this.configService.get().logLevel,
+      level: "info",
       format: formatter(),
     });
     this.logger.add(

@@ -20,10 +20,9 @@ const formatter = winston.format((info) => {
  * Provides a means to write log messages.
  */
 let Logger = class Logger {
-    constructor(configService) {
-        this.configService = configService;
+    constructor() {
         this.logger = winston.createLogger({
-            level: this.configService.get().logLevel,
+            level: 'info',
             format: formatter(),
         });
         this.logger.add(new winston.transports.Console({

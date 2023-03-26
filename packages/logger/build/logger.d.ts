@@ -1,14 +1,12 @@
 import { LoggerService } from "@nestjs/common";
 import * as winston from "winston";
-import { ConfigService } from "@eats/config";
 import { LogLevel } from "./loglevel";
 /**
  * Provides a means to write log messages.
  */
 export declare class Logger implements LoggerService {
-    private configService;
     logger: winston.Logger;
-    constructor(configService: ConfigService);
+    constructor();
     /**
      * Writes a log message.
      * @param level the severity of the message
