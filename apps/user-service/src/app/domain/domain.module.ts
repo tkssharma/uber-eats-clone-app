@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TerminusModule } from "@nestjs/terminus";
-import { ConfigModule } from "src/config/config.module";
-import { AppLoggerModule } from "src/logger/logger.module";
-import { DBModule } from "src/storage/database/db.module";
+import { ConfigModule } from "@eats/config";
+import { AppLoggerModule } from "@eats/logger";
+import { DBModule } from "@eats/database";
 import { AuthModule } from "./auth/auth.module";
 import { UserEntity } from "./user/entity/user.entity";
 import { UserModule } from "./user/user.module";

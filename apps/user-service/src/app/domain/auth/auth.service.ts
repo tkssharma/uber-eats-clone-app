@@ -5,7 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
-import { ConfigService } from "src/config/config.service";
+import { ConfigService } from "@eats/config";
 import { UserService } from "../user/user.service";
 import { UserSigInDto } from "./dto/auth-request.dto";
 import * as bcrypt from "bcrypt";

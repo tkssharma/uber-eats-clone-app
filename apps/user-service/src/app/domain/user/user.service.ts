@@ -1,7 +1,7 @@
 import { ConflictException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { ConfigService } from "../../../config/config.service";
-import { Logger } from "../../../logger/logger";
+import { ConfigService } from "@eats/config";
+import { Logger } from "@eats/logger";
 import { Like, Repository } from "typeorm";
 import * as bcrypt from "bcrypt";
 

@@ -31,7 +31,7 @@ import {
   ApiOperation,
   ApiTags,
 } from "@nestjs/swagger";
-import { Logger } from "../../../logger/logger";
+import { Logger } from "@eats/logger";
 import { AccessTokenGuard } from "../auth/guards/access_token.guard";
 import { RoleAllowed } from "../auth/guards/role-decorator";
 import { RolesGuard } from "../auth/guards/role-guard";

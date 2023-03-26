@@ -1,0 +1,26 @@
+version: '3'
+services:
+  postgres-user:
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="auth-api","auth-api-testing"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - auth_api_data:/data/postgres
+    ports:
+      - 5436:5432
+
+  postgres-restaurant:
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="auth-api","auth-api-testing"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - restaurant_api_data:/data/postgres
+    ports:
+      - 5435:5432
+volumes:
+  auth_api_data: {}
+  restaurant_api_data: {}
