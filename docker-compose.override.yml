@@ -15,7 +15,7 @@ services:
     environment:
       - POSTGRES_USER=api
       - POSTGRES_PASSWORD=development_pass
-      - POSTGRES_MULTIPLE_DATABASES="auth-api","auth-api-testing"
+      - POSTGRES_MULTIPLE_DATABASES="restaurant-api","restaurant-api-testing"
     volumes:
       - ./docker-utils:/docker-entrypoint-initdb.d
       - restaurant_api_data:/data/postgres

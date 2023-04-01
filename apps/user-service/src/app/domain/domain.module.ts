@@ -6,7 +6,6 @@ import { DBModule } from "@eats/database";
 import { AuthModule } from "./auth/auth.module";
 import { UserEntity } from "./user/entity/user.entity";
 import { UserModule } from "./user/user.module";
-
 @Module({
   imports: [
     DBModule.forRoot({

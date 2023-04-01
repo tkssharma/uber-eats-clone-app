@@ -3,6 +3,10 @@ import { PassportStrategy } from "@nestjs/passport";
 import { JwtPayload } from "jsonwebtoken";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { ConfigService } from "@eats/config";
+import { debug } from "debug";
+
+const verbose = debug("eats-restaurant:verbose:handler");
+const error = debug("eats-restaurant:verbose:handler");
 
 // Bearer <>//
 
@@ -15,6 +19,10 @@ export class AccessTokenJwtStrategy extends PassportStrategy(Strategy) {
     });
   }
   async validate(payload: JwtPayload) {
+    verbose(payload);
+    if (!payload) {
+      throw new UnauthorizedException();
+    }
     return payload;
   }
 }

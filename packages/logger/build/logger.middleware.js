@@ -21,7 +21,8 @@ let LoggerMiddleware = class LoggerMiddleware {
         req.parentSpan = span;
         req.span = span;
         next();
-        res.on("close", () => this.logger && this.logger.http(this.generateLogMessage(req, res, Date.now() - before)));
+        res.on("close", () => this.logger &&
+            this.logger.http(this.generateLogMessage(req, res, Date.now() - before)));
     }
     getResponseSize(res) {
         const sizeRaw = res.getHeader("Content-Length");

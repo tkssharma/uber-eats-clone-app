@@ -38,7 +38,6 @@ import { Logger } from "@eats/logger";
 import { AccessTokenGuard } from "../auth/guards/access_token.guard";
 import { RoleAllowed } from "../auth/guards/role-decorator";
 import { RolesGuard } from "../auth/guards/role-guard";
-import { Roles } from "../auth/guards/roles";
 import {
   FindUserDto,
   UpdateUserByIdDto,
@@ -55,6 +54,7 @@ import {
   BAD_REQUEST,
   INTERNAL_SERVER_ERROR,
 } from "src/app/app.constants";
+import { UserRoles } from "@eats/types";
 
 // user signup
 // fetch user info
@@ -94,7 +94,7 @@ export class UserController {
   }
 
   @UseGuards(AccessTokenGuard, RolesGuard)
-  @RoleAllowed(Roles["system-admin"])
+  @RoleAllowed(UserRoles["system-admin"])
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: UserSignupResponseDto, description: "" })
   @ApiOperation({ description: "find users based on props " })
@@ -106,7 +106,7 @@ export class UserController {
   }
 
   @UseGuards(AccessTokenGuard, RolesGuard)
-  @RoleAllowed(Roles["system-admin"])
+  @RoleAllowed(UserRoles["system-admin"])
   @ApiConsumes("application/json")
   @ApiNotFoundResponse({ description: NO_ENTITY_FOUND })
   @ApiForbiddenResponse({ description: UNAUTHORIZED_REQUEST })
@@ -129,7 +129,7 @@ export class UserController {
   }
 
   @UseGuards(AccessTokenGuard, RolesGuard)
-  @RoleAllowed(Roles["system-admin"])
+  @RoleAllowed(UserRoles["system-admin"])
   @ApiConsumes("application/json")
   @ApiNotFoundResponse({ description: NO_ENTITY_FOUND })
   @ApiForbiddenResponse({ description: UNAUTHORIZED_REQUEST })
@@ -162,7 +162,7 @@ export class UserController {
   @ApiOkResponse({
     description: "return session user details",
   })
-  @Get("/")
+  @Get("/profile")
   public async getUser(@User() user: UserEntity) {
     return user;
   }
