@@ -12,3 +12,9 @@ dist
 *.yml
 *.json
 *.next
+/packages/**/build
+/packages/**/dist
+/apps/**/build
+/apps/**/dist
+/infra/**/build
+/infra/**/dist

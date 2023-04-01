@@ -1,9 +1,9 @@
 import { forwardRef, Module } from "@nestjs/common";
-import { AppLoggerModule } from "src/logger/logger.module";
+import { AppLoggerModule } from "@eats/logger";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule, JwtModuleOptions } from "@nestjs/jwt";
-import { ConfigModule } from "../../../config/config.module";
-import { ConfigService } from "../../../config/config.service";
+import { ConfigModule } from "@eats/config";
+import { ConfigService } from "@eats/config";
 import { UserModule } from "../user/user.module";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";

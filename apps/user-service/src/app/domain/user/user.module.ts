@@ -1,8 +1,8 @@
 import { forwardRef, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { DBModule } from "src/storage/database/db.module";
-import { ConfigModule } from "../../../config/config.module";
-import { AppLoggerModule } from "../../../logger/logger.module";
+import { DBModule } from "@eats/database";
+import { ConfigModule } from "@eats/config";
+import { AppLoggerModule } from "@eats/logger";
 import { AuthModule } from "../auth/auth.module";
 import { UserEntity } from "./entity/user.entity";
 import { UserController } from "./user.controller";

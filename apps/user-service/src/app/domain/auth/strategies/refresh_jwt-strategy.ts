@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { JwtPayload } from "jsonwebtoken";
 import { ExtractJwt, Strategy } from "passport-jwt";
-import { ConfigService } from "src/config/config.service";
+import { ConfigService } from "@eats/config";
 import { AuthService } from "../auth.service";
 
 // Bearer <>//

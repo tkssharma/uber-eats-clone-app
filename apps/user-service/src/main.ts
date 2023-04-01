@@ -4,7 +4,7 @@ import { AppModule } from "./app.module";
 import { createDocument } from "./docs/swagger";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { snapshot: true });
   const globalPrefix = "api/v1";
   app.setGlobalPrefix(globalPrefix);
 
@@ -13,6 +13,6 @@ async function bootstrap() {
     next();
   });
   createDocument(app);
-  await app.listen(3000 || process.env.PORT);
+  await app.listen(3001 || process.env.PORT);
 }
 bootstrap();

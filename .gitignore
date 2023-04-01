@@ -8,3 +8,9 @@ node_modules
 !.env.example
 .vercel
 .output
+/packages/**/build
+/packages/**/dist
+/apps/**/build
+/apps/**/dist
+/infra/**/build
+/infra/**/dist

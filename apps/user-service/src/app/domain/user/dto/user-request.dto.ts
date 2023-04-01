@@ -2,13 +2,17 @@ import { ApiProperty, PartialType } from "@nestjs/swagger";
 import {
   IsDefined,
   IsEmail,
+  IsEnum,
   IsObject,
   IsOptional,
   IsString,
+  IsUUID,
   MinLength,
   ValidateNested,
 } from "class-validator";
 import { Type as validateType } from "class-transformer";
+import { UserRoles } from "@eats/types";
+
 export class UserSignupDto {
   @ApiProperty({
     description: "email",
@@ -47,6 +51,25 @@ export class UserSignupDto {
   @IsString()
   @MinLength(8)
   public password!: string;
+}
+
+export class UpdateUserByIdDto {
+  @ApiProperty({
+    description: "uuid user_id",
+    example: "",
+    required: true,
+  })
+  @IsUUID()
+  public id!: string;
+}
+export class UpdateUserPermissionBodyDto {
+  @ApiProperty({
+    description: "uuid user_id",
+    example: "",
+    enum: UserRoles,
+  })
+  @IsEnum(UserRoles)
+  public permissions!: UserRoles;
 }
 
 export class FindUserDto {

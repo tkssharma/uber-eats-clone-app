@@ -31,14 +31,14 @@ import {
   ApiOperation,
   ApiTags,
 } from "@nestjs/swagger";
-import { Logger } from "../../../logger/logger";
+import { Logger } from "@eats/logger";
 import { AuthService } from "./auth.service";
 import { UserSigInDto } from "./dto/auth-request.dto";
 import { UserSignInResponseDto } from "./dto/auth-response.dto";
 import { RefreshTokenGuard } from "./guards/refresh_token.guard";
 import { AccessTokenGuard } from "./guards/access_token.guard";
 import { RoleAllowed } from "./guards/role-decorator";
-import { Roles } from "./guards/roles";
+import { UserRoles } from "@eats/types";
 
 @ApiBearerAuth("authorization")
 @Controller("auth")
