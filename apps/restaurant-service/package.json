@@ -43,6 +43,8 @@
     "@eats/database": "*",
     "@eats/logger": "1.0.0",
     "@eats/types": "*",
+    "@nestjs/elasticsearch": "^7.1.0",
+    "@elastic/elasticsearch": "^7.12.0", 
     "@nanogiants/nestjs-swagger-api-exception-decorator": "1.5.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.3.12",

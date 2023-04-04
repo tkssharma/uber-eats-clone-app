@@ -12,10 +12,14 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthModule } from "./auth/auth.module";
 import { RestaurantDishService } from "./restaurant/services/restaurant.dish.service";
 import { RestaurantDishController } from "./restaurant/controller/restaurant.dish.controller";
+import { SearchModule } from "./search/search.module";
+import { EventEmitterModule } from "@nestjs/event-emitter";
 
 @Module({
   imports: [
+    SearchModule,
     AuthModule,
+    EventEmitterModule.forRoot(),
     TypeOrmModule.forFeature([RestaurantEntity, RestaurantDishEntity]),
     DBModule.forRoot({
       entities: [

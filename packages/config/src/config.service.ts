@@ -25,6 +25,12 @@ export class ConfigService {
         access_token_secret: env.JWT_ACCESS_TOKEN_SECRET!,
         refresh_token_secret: env.JWT_REFRESH_TOKEN_SECRET!,
       },
+      elastic: {
+        url: env.ELASTIC_SEARCH_URL!,
+        username: env.ELASTIC_SEARCH_USERNAME!,
+        password: env.ELASTIC_SEARCH_PASSWORD!,
+        index: env.ELASTIC_SEARCH_INDEX,
+      },
     };
   }
   private parseDBConfig(

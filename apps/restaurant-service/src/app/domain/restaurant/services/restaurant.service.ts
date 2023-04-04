@@ -14,6 +14,8 @@ import {
 } from "../dto/restaurant.dto";
 import { RestaurantAddressEntity } from "../entity/restaurant.address.entity";
 import { UserMetaData } from "../../auth/guards/user";
+import { SearchService } from "../../search/search.service";
+import { EventEmitter2 } from "@nestjs/event-emitter";
 
 @Injectable()
 export class RestaurantService {
@@ -22,7 +24,9 @@ export class RestaurantService {
     @InjectRepository(RestaurantEntity)
     private restaurantRepo: Repository<RestaurantEntity>,
     private readonly connection: Connection,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private readonly searchService: SearchService,
+    private eventEmitter: EventEmitter2
   ) {}
 
   async search(query: SearchQueryDto) {}
@@ -41,7 +45,7 @@ export class RestaurantService {
         queryRunner
       );
       await this.createAddress(payload.address, createdRestaurant, queryRunner);
-
+      this.eventEmitter.emit("index.restaurant", createdRestaurant);
       await queryRunner.commitTransaction();
       return createdRestaurant;
     } catch (err) {

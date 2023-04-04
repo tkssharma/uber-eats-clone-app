@@ -27,7 +27,7 @@ export class RestaurantEntity extends BaseEntity {
   public website_url!: string;
 
   @Column({ type: "jsonb", default: null })
-  public social_links!: string;
+  public social_links!: any;
 
   @Column({ type: "varchar", default: null })
   public cuisine!: string;
