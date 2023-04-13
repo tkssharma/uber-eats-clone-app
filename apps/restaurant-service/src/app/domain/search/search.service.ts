@@ -3,6 +3,10 @@ import { ElasticsearchService } from "@nestjs/elasticsearch";
 import { Mapping, Settings } from "./mapping";
 import { ConfigService } from "@eats/config";
 import { EventEmitter2, OnEvent } from "@nestjs/event-emitter";
+import { RestaurantService } from "../restaurant/services/restaurant.service";
+import { SearchQueryDto } from "../restaurant/dto/restaurant.dto";
+import { RestaurantEntity } from "../restaurant/entity/restaurant.entity";
+import { RestaurantAddressEntity } from "../restaurant/entity/restaurant.address.entity";
 
 @Injectable()
 export class SearchService {
@@ -33,30 +37,58 @@ export class SearchService {
       throw err;
     }
   }
+
+  @OnEvent("index.dish.restaurant")
+  public async indexRestaurantWithDish(data: {
+    restaurant: RestaurantEntity;
+    menuItems: string;
+  }): Promise<any> {
+    const { restaurant, menuItems } = data;
+    console.log("inside [index.restaurant] handler");
+    try {
+      const payload = {
+        menu: menuItems,
+        ...restaurant,
+      };
+      return await this.esService.update({
+        index: this.configService.get().elastic.index,
+        id: restaurant.id,
+        body: {
+          doc: payload,
+        },
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+
   @OnEvent("index.restaurant")
-  public async indexRestaurant(restaurant: any): Promise<any> {
+  public async indexRestaurant(data: {
+    restaurant: RestaurantEntity;
+    address: RestaurantAddressEntity;
+  }): Promise<any> {
+    const { restaurant, address } = data;
     console.log("inside [index.restaurant] handler");
     try {
       const payload = {
         id: restaurant.id,
         name: restaurant.name,
         description: restaurant.description,
-        latitude: "11",
-        longitude: "11",
-        contact_no: "8998978987",
-        cuisine: "north indian, south indian",
-        banner: "https://gogole.com/banner.png",
-        url: "https://gogole.com/banner.png",
-        delivery_options: "delivery_options",
-        pickup_options: "pickup_options",
-        opens_at: "2023-10-05T14:48:00.000Z",
-        closes_at: "2023-10-05T14:48:00.000Z",
-        address: "hello",
-        city: "panjim",
-        state: "goa",
-        street: "goa",
-        pincode: "12001",
-        country: "India",
+        contact_no: restaurant.contact_no,
+        cuisine: restaurant.cuisine,
+        banner: restaurant.banner,
+        url: restaurant.website_url,
+        delivery_options: restaurant.delivery_options,
+        pickup_options: restaurant.pickup_options,
+        opens_at: restaurant.opens_at,
+        closes_at: restaurant.closes_at,
+        menu: "",
+        address: address.street,
+        city: address.city,
+        state: address.state,
+        street: address.street,
+        pincode: address.pincode,
+        country: address.country,
       };
       return await this.esService.index({
         index: this.configService.get().elastic.index,
@@ -67,7 +99,7 @@ export class SearchService {
       throw err;
     }
   }
-  public async search(searchParam: any) {
+  public async search(searchParam: SearchQueryDto) {
     try {
       const pagination: any = {
         page: Number(searchParam.page || 1),
@@ -76,16 +108,51 @@ export class SearchService {
       const skippedItems = (pagination.page - 1) * pagination.limit;
       const { body } = await this.esService.search<any>({
         index: this.configService.get().elastic.index,
-        body: {},
+        body: this.buildSearchQuery(searchParam),
         from: skippedItems,
         size: pagination.limit,
       });
       const totalCount = body.hits.total.value;
       const hits = body.hits.hits;
-      const profiles = hits.map((item: any) => item._source);
+      const restaurants = hits.map((item: any) => item._source);
       return {
         totalCount,
-        profiles,
+        restaurants,
+      };
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  public buildSearchQuery(searchParam: SearchQueryDto) {
+    const { search_text } = searchParam;
+    try {
+      const query = [];
+      if (search_text) {
+        query.push({
+          multi_match: {
+            query: `${search_text}`,
+            type: "cross_fields",
+            fields: [
+              "name",
+              "name.word_delimiter",
+              "description",
+              "description.word_delimiter",
+              "menu",
+              "menu.word_delimiter",
+              "city",
+              "address",
+            ],
+            operator: "or",
+          },
+        });
+      }
+      return {
+        query: {
+          bool: {
+            must: query,
+          },
+        },
       };
     } catch (err) {
       throw err;

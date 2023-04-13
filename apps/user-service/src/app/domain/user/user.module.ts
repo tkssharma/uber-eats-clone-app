@@ -7,16 +7,19 @@ import { AuthModule } from "../auth/auth.module";
 import { UserEntity } from "./entity/user.entity";
 import { UserController } from "./user.controller";
 import { UserService } from "./user.service";
+import { UserAddressService } from "./user.address.service";
+import { UserAddressController } from "./user.address.controller";
+import { UserAddressEntity } from "./entity/user.address.entity";
 @Module({
   imports: [
     // most imp
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, UserAddressEntity]),
     AppLoggerModule,
     ConfigModule,
     forwardRef(() => AuthModule),
   ],
-  controllers: [UserController],
-  providers: [UserService],
-  exports: [UserService],
+  controllers: [UserController, UserAddressController],
+  providers: [UserService, UserAddressService],
+  exports: [UserService, UserAddressService],
 })
 export class UserModule {}

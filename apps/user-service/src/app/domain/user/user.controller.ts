@@ -43,6 +43,7 @@ import {
   UpdateUserByIdDto,
   UpdateUserPermissionBodyDto,
   UserSignupDto,
+  fieldsToUpdateDto,
 } from "./dto/user-request.dto";
 import { UserSignupResponseDto } from "./dto/user-response.dto";
 import { UserService } from "./user.service";
@@ -56,11 +57,6 @@ import {
 } from "src/app/app.constants";
 import { UserRoles } from "@eats/types";
 
-// user signup
-// fetch user info
-// reset password
-// update your own profile
-// fetch list of all users if role/permission is admin
 @ApiBearerAuth("authorization")
 @Controller("users")
 @UsePipes(
@@ -76,21 +72,32 @@ export class UserController {
     private readonly logger: Logger
   ) {}
 
-  // define all our user routes
-
   @HttpCode(HttpStatus.CREATED)
   @ApiCreatedResponse({
-    // ADD RESPONSE DTO TYPE HERE
     type: UserSignupResponseDto,
-    description: "USER CREATED SUCCESSFULLY",
+    description: "user created successfully",
   })
   @ApiOkResponse({ type: UserSignupResponseDto, description: "" })
   @ApiOperation({ description: "user create api " })
-  @ApiConsumes("APPLICATION/JSON")
+  @ApiConsumes("application/json")
   @Post("")
   public async CreateUser(@Body() body: UserSignupDto) {
     this.logger.info(JSON.stringify(body));
     return this.service.create(body);
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @HttpCode(HttpStatus.CREATED)
+  @ApiCreatedResponse({
+    type: UserSignupResponseDto,
+    description: "user updated successfully",
+  })
+  @ApiOkResponse({ type: UserSignupResponseDto, description: "" })
+  @ApiOperation({ description: "user update api " })
+  @ApiConsumes("application/json")
+  @Put("/:id")
+  public async UpdateUser(@Body() body: fieldsToUpdateDto) {
+    return this.service.update(body.email, body);
   }
 
   @UseGuards(AccessTokenGuard, RolesGuard)

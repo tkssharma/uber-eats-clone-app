@@ -91,6 +91,20 @@ export const Mapping = {
         },
       },
     },
+    menu: {
+      type: "text",
+      analyzer: "english",
+      fields: {
+        keyword: {
+          type: "keyword",
+          ignore_above: 256,
+        },
+        word_delimiter: {
+          type: "text",
+          analyzer: "word_delimiter",
+        },
+      },
+    },
     cuisine: {
       type: "text",
       analyzer: "english",

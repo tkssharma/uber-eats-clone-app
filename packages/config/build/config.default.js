@@ -18,6 +18,6 @@ exports.DEFAULT_CONFIG = {
     },
     logLevel: "",
     elastic: {
-        url: ""
-    }
+        url: "",
+    },
 };

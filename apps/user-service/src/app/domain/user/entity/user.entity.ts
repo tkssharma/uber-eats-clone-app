@@ -5,7 +5,9 @@ import {
   UpdateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from "typeorm";
+import { UserAddressEntity } from "./user.address.entity";
 
 @Entity("users")
 export class UserEntity extends BaseEntity {
@@ -36,12 +38,11 @@ export class UserEntity extends BaseEntity {
   @Column({ type: "varchar", nullable: true })
   public permissions!: string;
 
-  // root-user, admin-user
-  // restaurant-admin, restaurant-user
-  // read-user
-
   @Column({ type: "jsonb", default: null })
   public passwordReset!: any;
+
+  @OneToMany(() => UserAddressEntity, (event) => event.user)
+  public addresses!: UserAddressEntity[];
 
   @CreateDateColumn({
     type: "timestamptz",

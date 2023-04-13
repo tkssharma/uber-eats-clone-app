@@ -27,8 +27,8 @@ let ConfigService = class ConfigService {
                 url: env.ELASTIC_SEARCH_URL,
                 username: env.ELASTIC_SEARCH_USERNAME,
                 password: env.ELASTIC_SEARCH_PASSWORD,
-                index: env.ELASTIC_SEARCH_INDEX
-            }
+                index: env.ELASTIC_SEARCH_INDEX,
+            },
         };
     }
     parseDBConfig(env, defaultConfig) {

@@ -3,6 +3,15 @@ services:
   postgres-user:
     image: postgres
     restart: unless-stopped
+  postgres-cart:
+    image: postgres
+    restart: unless-stopped
+  postgres-order:
+    image: postgres
+    restart: unless-stopped
+  postgres-delivery:
+    image: postgres
+    restart: unless-stopped
   postgres-restaurant:
     image: postgres
     restart: unless-stopped

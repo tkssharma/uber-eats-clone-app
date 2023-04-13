@@ -13,6 +13,80 @@ import {
 import { Type as validateType } from "class-transformer";
 import { UserRoles } from "@eats/types";
 
+export class CreateAddressDto {
+  @ApiProperty({
+    description: "city",
+    example: "delhi",
+    required: true,
+  })
+  @IsDefined()
+  @IsString()
+  public city!: string;
+
+  @ApiProperty({
+    description: "state",
+    example: "delhi",
+    required: true,
+  })
+  @IsDefined()
+  @IsString()
+  public state!: string;
+
+  @ApiProperty({
+    description: "lat",
+    example: "12",
+    required: true,
+  })
+  @IsOptional()
+  @IsString()
+  public lat!: string;
+
+  @ApiProperty({
+    description: "long",
+    example: "11",
+    required: true,
+  })
+  @IsOptional()
+  @IsString()
+  public long!: string;
+
+  @ApiProperty({
+    description: "country",
+    example: "INDIA",
+    required: true,
+  })
+  @IsDefined()
+  @IsString()
+  public country!: string;
+
+  @ApiProperty({
+    description: "pin_code",
+    example: "6789876",
+    required: true,
+  })
+  @IsDefined()
+  @IsString()
+  public pincode!: string;
+
+  @ApiProperty({
+    description: "street",
+    example: "street",
+    required: true,
+  })
+  @IsDefined()
+  @IsString()
+  public street!: string;
+
+  @ApiProperty({
+    description: "full address",
+    example: "full address",
+    required: true,
+  })
+  @IsDefined()
+  @IsString()
+  public name!: string;
+}
+
 export class UserSignupDto {
   @ApiProperty({
     description: "email",
