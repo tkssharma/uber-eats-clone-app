@@ -46,6 +46,131 @@ importers:
       ts-jest: 27.1.5_cnngzrja2umb46xxazlucyx2qu
       typescript: 4.9.5
 
+  apps/cart-service:
+    specifiers:
+      "@eats/config": 1.0.3
+      "@eats/database": "*"
+      "@eats/logger": 1.0.0
+      "@eats/types": "*"
+      "@elastic/elasticsearch": ^7.12.0
+      "@nanogiants/nestjs-swagger-api-exception-decorator": 1.5.0
+      "@nestjs/cli": ^9.0.0
+      "@nestjs/common": ^9.0.0
+      "@nestjs/core": ^9.3.12
+      "@nestjs/devtools-integration": ^0.1.3
+      "@nestjs/elasticsearch": ^7.1.0
+      "@nestjs/event-emitter": 1.0.0
+      "@nestjs/jwt": ^10.0.2
+      "@nestjs/passport": ^9.0.3
+      "@nestjs/platform-express": ^9.0.0
+      "@nestjs/schematics": ^9.0.0
+      "@nestjs/swagger": ^6.1.4
+      "@nestjs/terminus": ^9.0.0
+      "@nestjs/testing": ^9.0.0
+      "@nestjs/typeorm": ^9.0.1
+      "@types/express": ^4.17.13
+      "@types/jsonwebtoken": ^8.5.5
+      "@types/node": ^16.0.0
+      "@types/supertest": ^2.0.11
+      "@types/uuid": ^9.0.1
+      bcrypt: ^5.1.0
+      class-transformer: ^0.5.1
+      class-validator: ^0.14.0
+      concurrently: ^5.0.0
+      copyfiles: ^2.4.1
+      debug: ^4.3.4
+      dotenv: ^8.2.0
+      dotenv-cli: ^4.0.0
+      express: ^4.17.1
+      express-basic-auth: ^1.2.0
+      helmet: ^4.6.0
+      jsonwebtoken: ^8.5.1
+      mock-jwks: ^1.0.1
+      module-alias: 2.2.2
+      moment: ^2.29.1
+      nock: ^13.1.3
+      nodemon: ^2.0.13
+      parse-domain: 4.1.0
+      passport: ^0.6.0
+      passport-jwt: ^4.0.1
+      pg: ^8.7.1
+      reflect-metadata: ^0.1.13
+      rimraf: ^3.0.2
+      rxjs: ^7.2.0
+      supertest: ^6.1.3
+      swagger-ui-express: ^4.1.6
+      ts-jest: ^27.0.3
+      ts-loader: ^9.2.3
+      ts-node: ^10.0.0
+      typeorm: ^0.3.12
+      typescript: ^4.3.5
+      url-join-ts: ^1.0.5
+      uuid: ^9.0.0
+      uuidv4: ^6.2.12
+      winston: ^3.3.3
+    dependencies:
+      "@eats/config": link:../../packages/config
+      "@eats/database": link:../../packages/database
+      "@eats/logger": link:../../packages/logger
+      "@eats/types": link:../../packages/types
+      "@elastic/elasticsearch": 7.17.0
+      "@nanogiants/nestjs-swagger-api-exception-decorator": 1.5.0_tvmv6jmrgu2d722innvsccerau
+      "@nestjs/common": 9.3.12_welcnyot5bzd5wa2aovbkxpi4i
+      "@nestjs/core": 9.3.12_qhubmme3ystyvorrsy6sfc2ome
+      "@nestjs/devtools-integration": 0.1.3_bgmtsjzu2jyijhogwtog4e3a6e
+      "@nestjs/elasticsearch": 7.1.0_aiion35ll2t56pkb34rr2ao3ga
+      "@nestjs/event-emitter": 1.0.0_bgmtsjzu2jyijhogwtog4e3a6e
+      "@nestjs/jwt": 10.0.2_@nestjs+common@9.3.12
+      "@nestjs/passport": 9.0.3_ajy2slul3age3kopk444psnhqq
+      "@nestjs/platform-express": 9.3.12_ge4qplnzbmfyi5znl534zhtkn4
+      "@nestjs/swagger": 6.2.1_56wskrocvqeup2a4dyvgnvm62u
+      "@nestjs/terminus": 9.2.1_eqdbibdljhupcjrmscytsfyqxy
+      "@nestjs/typeorm": 9.0.1_tczrxjq6l4bicygw3hjjbo47ua
+      "@types/uuid": 9.0.1
+      bcrypt: 5.1.0
+      class-transformer: 0.5.1
+      class-validator: 0.14.0
+      debug: 4.3.4
+      express: 4.18.2
+      express-basic-auth: 1.2.1
+      helmet: 4.6.0
+      jsonwebtoken: 8.5.1
+      module-alias: 2.2.2
+      moment: 2.29.4
+      parse-domain: 4.1.0
+      passport: 0.6.0
+      passport-jwt: 4.0.1
+      pg: 8.10.0
+      reflect-metadata: 0.1.13
+      rimraf: 3.0.2
+      rxjs: 7.8.0
+      swagger-ui-express: 4.6.2_express@4.18.2
+      typeorm: 0.3.12_pg@8.10.0+ts-node@10.9.1
+      url-join-ts: 1.0.5
+      uuid: 9.0.0
+      uuidv4: 6.2.13
+      winston: 3.8.2
+    devDependencies:
+      "@nestjs/cli": 9.3.0
+      "@nestjs/schematics": 9.0.4_typescript@4.7.4
+      "@nestjs/testing": 9.3.12_ckvy3xuqd5ydy3ipiq7jufha44
+      "@types/express": 4.17.17
+      "@types/jsonwebtoken": 8.5.9
+      "@types/node": 16.18.20
+      "@types/supertest": 2.0.12
+      concurrently: 5.3.0
+      copyfiles: 2.4.1
+      dotenv: 8.6.0
+      dotenv-cli: 4.1.1
+      mock-jwks: 1.0.9_nock@13.3.0
+      nock: 13.3.0
+      nodemon: 2.0.22
+      supertest: 6.3.3
+      ts-jest: 27.1.5_typescript@4.7.4
+      ts-loader: 9.4.2_typescript@4.7.4
+      ts-node: 10.9.1_su47idioa4lj7cebr6eawnzwm4
+      typescript: 4.7.4
+
   apps/drivers:
     specifiers:
       dd: ^0.26.0
@@ -144,11 +269,13 @@ importers:
       "@eats/database": "*"
       "@eats/logger": 1.0.0
       "@eats/types": "*"
+      "@elastic/elasticsearch": ^7.12.0
       "@nanogiants/nestjs-swagger-api-exception-decorator": 1.5.0
       "@nestjs/cli": ^9.0.0
       "@nestjs/common": ^9.0.0
       "@nestjs/core": ^9.3.12
       "@nestjs/devtools-integration": ^0.1.3
+      "@nestjs/elasticsearch": ^7.1.0
       "@nestjs/event-emitter": 1.0.0
       "@nestjs/jwt": ^10.0.2
       "@nestjs/passport": ^9.0.3
@@ -203,10 +330,12 @@ importers:
       "@eats/database": link:../../packages/database
       "@eats/logger": link:../../packages/logger
       "@eats/types": link:../../packages/types
+      "@elastic/elasticsearch": 7.17.0
       "@nanogiants/nestjs-swagger-api-exception-decorator": 1.5.0_tvmv6jmrgu2d722innvsccerau
       "@nestjs/common": 9.3.12_welcnyot5bzd5wa2aovbkxpi4i
       "@nestjs/core": 9.3.12_qhubmme3ystyvorrsy6sfc2ome
       "@nestjs/devtools-integration": 0.1.3_bgmtsjzu2jyijhogwtog4e3a6e
+      "@nestjs/elasticsearch": 7.1.0_aiion35ll2t56pkb34rr2ao3ga
       "@nestjs/event-emitter": 1.0.0_bgmtsjzu2jyijhogwtog4e3a6e
       "@nestjs/jwt": 10.0.2_@nestjs+common@9.3.12
       "@nestjs/passport": 9.0.3_ajy2slul3age3kopk444psnhqq
@@ -3213,6 +3342,21 @@ packages:
       kuler: 2.0.0
     dev: false
 
+  /@elastic/elasticsearch/7.17.0:
+    resolution:
+      {
+        integrity: sha512-5QLPCjd0uLmLj1lSuKSThjNpq39f6NmlTy9ROLFwG5gjyTgpwSqufDeYG/Fm43Xs05uF7WcscoO7eguI3HuuYA==,
+      }
+    engines: { node: ">=12" }
+    dependencies:
+      debug: 4.3.4
+      hpagent: 0.1.2
+      ms: 2.1.3
+      secure-json-parse: 2.7.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@esbuild/android-arm/0.17.13:
     resolution:
       {
@@ -4759,6 +4903,21 @@ packages:
       reflect-metadata: 0.1.13
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@nestjs/elasticsearch/7.1.0_aiion35ll2t56pkb34rr2ao3ga:
+    resolution:
+      {
+        integrity: sha512-3ixmu9MkTh0DS+LKAKcWHLyf/1DPQTXoy+aVClVI14DJQU208oHR3V0e9klApC+GXCYW+BDhNReh4HRyekjTrw==,
+      }
+    peerDependencies:
+      "@elastic/elasticsearch": ^7.4.0
+      "@nestjs/common": ^6.0.0 || ^7.0.0
+      rxjs: ^6.2.1
+    dependencies:
+      "@elastic/elasticsearch": 7.17.0
+      "@nestjs/common": 9.3.12_welcnyot5bzd5wa2aovbkxpi4i
+      rxjs: 7.8.0
     dev: false
 
   /@nestjs/event-emitter/1.0.0_bgmtsjzu2jyijhogwtog4e3a6e:
@@ -13381,7 +13540,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -13799,6 +13958,13 @@ packages:
       obuf: 1.1.2
       readable-stream: 2.3.8
       wbuf: 1.7.3
+    dev: false
+
+  /hpagent/0.1.2:
+    resolution:
+      {
+        integrity: sha512-ePqFXHtSQWAFXYmj+JtOTHr84iNrII4/QRlAAPPE+zqnKy4xJo7Ie1Y4kC7AdB+LxLxSTTzBMASsEcy0q8YyvQ==,
+      }
     dev: false
 
   /html-encoding-sniffer/2.0.1:
@@ -21585,6 +21751,13 @@ packages:
       ajv: 8.12.0
       ajv-formats: 2.1.1
       ajv-keywords: 5.1.0_ajv@8.12.0
+    dev: false
+
+  /secure-json-parse/2.7.0:
+    resolution:
+      {
+        integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==,
+      }
     dev: false
 
   /select-hose/2.0.0:

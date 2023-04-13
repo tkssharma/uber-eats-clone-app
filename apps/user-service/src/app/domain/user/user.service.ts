@@ -42,7 +42,7 @@ export class UserService {
       }
     }
     const fieldToUpdate: any = {};
-    if (fields.password_update.new_password) {
+    if (fields.password_update && fields.password_update.new_password) {
       // check if old password passed here is correct with email
       // we can check that with auth service
       // user wants to update password
@@ -109,11 +109,10 @@ export class UserService {
     const { email, first_name, last_name, name } = data;
     const users = await this.userRepo.find({
       where: [
-        // OR query
-        { name: Like(`%${name}`) },
-        { email: Like(`%${email}`) },
-        { first_name: Like(`%${first_name}`) },
-        { last_name: Like(`%${last_name}`) },
+        { name: Like(`%${name}%`) },
+        { email: Like(`%${email}%`) },
+        { first_name: Like(`%${first_name}%`) },
+        { last_name: Like(`%${last_name}%`) },
       ],
     });
     return users;

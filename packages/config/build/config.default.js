@@ -17,4 +17,7 @@ exports.DEFAULT_CONFIG = {
         password: "",
     },
     logLevel: "",
+    elastic: {
+        url: "",
+    },
 };

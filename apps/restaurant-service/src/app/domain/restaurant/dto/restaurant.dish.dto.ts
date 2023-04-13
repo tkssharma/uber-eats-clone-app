@@ -1,6 +1,7 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger";
 import { Transform, Type as ValidateType } from "class-transformer";
 import {
+  ArrayMinSize,
   IsArray,
   IsDateString,
   IsDefined,
@@ -17,6 +18,24 @@ import {
 } from "class-validator";
 import { Type as validateType } from "class-transformer";
 import { UserRoles } from "@eats/types";
+
+export enum mealType {
+  "breakfast" = "breakfast",
+  "lunch" = "lunch",
+  "dinner" = "dinner",
+}
+export enum cuisineType {
+  "indian" = "indian",
+  "north_indian" = "north_indian",
+  "italian" = "italian",
+  "chinese" = "chinese",
+}
+
+export enum foodType {
+  "veg" = "veg",
+  "non_veg" = "non_veg",
+  "vegan" = "vegan",
+}
 
 export class RestaurantParamParamDto {
   @ApiProperty({
@@ -41,7 +60,7 @@ export class UpdateDishItemParamDto extends RestaurantParamParamDto {
 export class CreateRestaurantDishBodyDto {
   @ApiProperty({
     description: "name",
-    example: "name",
+    example: "paneer tikka masala",
     required: true,
   })
   @IsDefined()
@@ -49,13 +68,32 @@ export class CreateRestaurantDishBodyDto {
   public name!: string;
 
   @ApiProperty({
-    description: "description",
-    example: "desc",
+    description: "descriotion",
+    example:
+      "Paneer tikka or Paneer Soola or Chhena Soola is an Indian dish made from chunks of paneer/ chhena marinated in spices and grilled in a tandoor. It is a vegetarian alternative to chicken tikka and other meat dishes. It is a popular dish that is widely available in India and countries with an Indian diaspora",
     required: true,
   })
   @IsOptional()
   @IsString()
   public description!: string;
+
+  @ApiProperty({
+    description: "cuisine_type",
+    required: true,
+    enum: cuisineType,
+    example: cuisineType.indian,
+  })
+  @IsEnum(cuisineType)
+  public cuisine_type!: string;
+
+  @ApiProperty({
+    description: "meal_type",
+    required: true,
+    enum: mealType,
+    example: mealType.breakfast,
+  })
+  @IsEnum(mealType)
+  public meal_type!: string;
 
   @ApiProperty({
     description: "category",
@@ -77,11 +115,11 @@ export class CreateRestaurantDishBodyDto {
 
   @ApiProperty({
     description: "food_type",
-    example: "food_type",
     required: true,
+    enum: foodType,
+    example: foodType.vegan,
   })
-  @IsOptional()
-  @IsString()
+  @IsEnum(foodType)
   public food_type!: string;
 
   @ApiProperty({
@@ -98,7 +136,9 @@ export class CreateRestaurantDishBodyDto {
     required: true,
   })
   @IsOptional()
-  @IsArray({ each: true })
+  @IsArray()
+  @IsString({ each: true })
+  @ArrayMinSize(1)
   public thumbnails!: string[];
 }
 

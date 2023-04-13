@@ -7,6 +7,7 @@ import {
 
 import { AppService } from './app.service';
 import { ReverseProxyAuthMiddleware } from './proxy.auth.middleware';
+import { ReverseProxyRestaurantMiddleware } from './proxy.restaurant.middleware';
 
 @Module({
   imports: [],
@@ -19,10 +20,13 @@ export class AppModule implements NestModule {
       .apply(ReverseProxyAuthMiddleware)
       .forRoutes({ path: 'v1/auth-service/*', method: RequestMethod.ALL });
 
-    /*
-  consumer
-    .apply(ReverseProxyAuthMiddleware)
-    .forRoutes({ path: 'v1/cart-service/*', method: RequestMethod.ALL });
-    */
+    consumer
+      .apply(ReverseProxyAuthMiddleware)
+      .forRoutes({ path: 'v1/cart-service/*', method: RequestMethod.ALL });
+
+    consumer.apply(ReverseProxyRestaurantMiddleware).forRoutes({
+      path: 'v1/restaurant-service/*',
+      method: RequestMethod.ALL,
+    });
   }
 }

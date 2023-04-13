@@ -25,11 +25,13 @@ import {
   UpdateDishItemParamDto,
   UpdateRestaurantDishBodyDto,
 } from "../dto/restaurant.dish.dto";
+import { EventEmitter2 } from "@nestjs/event-emitter";
 
 @Injectable()
 export class RestaurantDishService {
   constructor(
     private readonly logger: Logger,
+    private eventEmitter: EventEmitter2,
     @InjectRepository(RestaurantEntity)
     private restaurantRepo: Repository<RestaurantEntity>,
     @InjectRepository(RestaurantDishEntity)
@@ -83,6 +85,16 @@ export class RestaurantDishService {
         restaurant,
         queryRunner
       );
+      const menus = await this.restaurantDishRepo.find({
+        where: { restaurant: { id: restaurant.id } },
+      });
+      if (menus && menus.length > 0) {
+        const menuItems = menus.map((i) => i.name).join(",");
+        this.eventEmitter.emit("index.dish.restaurant", {
+          restaurant,
+          menuItems,
+        });
+      }
       await queryRunner.commitTransaction();
       return dish;
     } catch (err) {

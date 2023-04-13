@@ -3,6 +3,20 @@ services:
   postgres-user:
     image: postgres
     restart: unless-stopped
+  postgres-cart:
+    image: postgres
+    restart: unless-stopped
+  postgres-order:
+    image: postgres
+    restart: unless-stopped
+  postgres-delivery:
+    image: postgres
+    restart: unless-stopped
   postgres-restaurant:
     image: postgres
     restart: unless-stopped
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.11.0
+  

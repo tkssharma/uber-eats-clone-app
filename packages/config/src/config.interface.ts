@@ -18,6 +18,13 @@ export interface UserServiceConfig {
   transport: any;
 }
 
+export interface ElasticConfig {
+  url: string;
+  username?: string;
+  password?: string;
+  index?: string;
+}
+
 export interface UserServiceConfigOptions {
   host: string;
   port: number;
@@ -35,4 +42,6 @@ export interface ConfigData {
   logLevel: string;
 
   auth: AuthConfig;
+
+  elastic: ElasticConfig;
 }

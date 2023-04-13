@@ -11,6 +11,39 @@ services:
     ports:
       - 5436:5432
 
+  postgres-cart:
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="cart-api","cart-api-testing"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - cart_api_data:/data/postgres
+    ports:
+      - 5438:5432  
+
+  postgres-delivery:
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="delivery-api","delivery-api-testing"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - delivery_api_data:/data/postgres
+    ports:
+      - 5439:5432  
+
+  postgres-order:
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="order-api","order-api-testing"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - order_api_data:/data/postgres
+    ports:
+      - 5433:5432                
+
   postgres-restaurant:
     environment:
       - POSTGRES_USER=api
@@ -21,6 +54,35 @@ services:
       - restaurant_api_data:/data/postgres
     ports:
       - 5435:5432
+  es01:
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01
+      - cluster.initial_master_nodes=es01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200  
+  kibana:
+    container_name: kb-container
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es01:9200
+    depends_on:
+      - es01
+    ports:
+      - 5601:5601               
 volumes:
   auth_api_data: {}
   restaurant_api_data: {}
+  cart_api_data: {}
+  es_data: {}
+  delivery_api_data: {}
+  order_api_data: {}
