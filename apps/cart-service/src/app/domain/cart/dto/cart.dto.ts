@@ -115,7 +115,6 @@ export class MenuItemBodyDto {
   @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  @ArrayMinSize(1)
   public thumbnails!: string[];
 }
 

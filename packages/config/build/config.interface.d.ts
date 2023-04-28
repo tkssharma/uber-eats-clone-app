@@ -20,6 +20,11 @@ export interface ElasticConfig {
     password?: string;
     index?: string;
 }
+export interface GoogleConfig {
+    oauth_google_id: string;
+    oauth_google_callback: string;
+    oauth_google_secret: string;
+}
 export interface UserServiceConfigOptions {
     host: string;
     port: number;
@@ -31,5 +36,6 @@ export interface ConfigData {
     swagger: ConfigSwagger;
     logLevel: string;
     auth: AuthConfig;
+    google: GoogleConfig;
     elastic: ElasticConfig;
 }

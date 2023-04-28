@@ -12,6 +12,8 @@ import * as bcrypt from "bcrypt";
 import { JwtPayload } from "jsonwebtoken";
 import { JwtService } from "@nestjs/jwt";
 import { UserEntity } from "../user/entity/user.entity";
+import { v4 as uuidv4 } from "uuid";
+import { UserSignupDto } from "../user/dto/user-request.dto";
 
 @Injectable()
 export class AuthService {
@@ -87,6 +89,41 @@ export class AuthService {
         expiresIn: "1d",
       }),
     ]);
+    return {
+      ...data,
+      access_token: accessToken,
+      refresh_token: refreshToken,
+    };
+  }
+  public async createGoogleToken(user: any) {
+    let savedUser = await this.usersService.findOneByEmail(user.email);
+
+    if (!savedUser) {
+      savedUser = await this.usersService.create({
+        email: user.username,
+        password: uuidv4(),
+      } as UserSignupDto);
+    }
+    const data: JwtPayload = {
+      userId: savedUser.id,
+      email: savedUser.email,
+    };
+    console.log(data);
+    const [accessToken, refreshToken] = await Promise.all([
+      this.jwtService.signAsync(data, {
+        secret: this.configService.get().auth.access_token_secret,
+        expiresIn: "1d",
+      }),
+      this.jwtService.signAsync(data, {
+        secret: this.configService.get().auth.refresh_token_secret,
+        expiresIn: "1d",
+      }),
+    ]);
+    console.log({
+      ...data,
+      access_token: accessToken,
+      refresh_token: refreshToken,
+    });
     return {
       ...data,
       access_token: accessToken,
