@@ -1,4 +1,5 @@
 // Native.
+import { Request, Response } from "@nestjs/common";
 
 // Package.
 import {
@@ -68,9 +69,21 @@ export class AuthController {
   @ApiBadRequestResponse({ description: "bad request" })
   @ApiConsumes("application/json")
   @Post("/login")
-  public async CreateUser(@Body() body: UserSigInDto) {
-    this.logger.info(JSON.stringify(body));
-    return this.service.validateUserByPassword(body);
+  public async CreateUser(
+    @Body() body: UserSigInDto,
+    @Request() req,
+    @Response() res
+  ) {
+    const response = await this.service.validateUserByPassword(body);
+    res.cookie("access_token", response.access_token, {
+      httpOnly: true,
+      sameSite: "lax",
+    });
+    res.cookie("refresh_token", response.refresh_token, {
+      httpOnly: true,
+      sameSite: "lax",
+    });
+    return res.send(response);
   }
 
   @UseGuards(AccessTokenGuard)

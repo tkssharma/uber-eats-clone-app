@@ -5,7 +5,7 @@ import React from 'react';
 export default function Signup() {
   return (
     <main className="h-screen w-full banner">
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center pt-10 ">
         <div></div>
         <form className="bg-white w-96 mt-6 p-4 rounded-lg shadow-lg">
             <div className="flex flex-col space-y-6">

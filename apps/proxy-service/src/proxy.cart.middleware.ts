@@ -2,9 +2,9 @@ import { NestMiddleware, HttpStatus } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
-export class ReverseProxyAuthMiddleware implements NestMiddleware {
+export class ReverseProxyCartMiddleware implements NestMiddleware {
   private proxy = createProxyMiddleware({
-    target: 'http://localhost:3002/api/v1/',
+    target: 'http://localhost:3004/api/v1/',
     pathRewrite: {
       '/api/v1/cart-service': '/',
     },
