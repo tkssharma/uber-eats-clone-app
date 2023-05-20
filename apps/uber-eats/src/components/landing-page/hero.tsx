@@ -2,8 +2,8 @@ import React from "react";
 
 function Hero() {
   return (
-    <div className ='mx-w-[1640px] mx-auto p-4' >
-      <div className= ' max-h-[500px] relative'>
+    <div className ='mx-w-[1640px] mx-auto' >
+      <div className= 'max-h-[500px] relative'>
         {/* overlay */}
         <div className='absolute w-full h-full text-gray-200
          max-h-[500px] bg-black/40 flex flex-col 

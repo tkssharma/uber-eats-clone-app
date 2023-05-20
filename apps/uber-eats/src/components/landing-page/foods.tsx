@@ -1,4 +1,4 @@
-import { data} from "../data/data";
+import { data} from "../../data/data";
 
 import React, { useEffect, useState } from "react";
 
@@ -71,6 +71,7 @@ function Foods() {
             </p>
             </div>
            </div>
+           
         ))}
       </div>
     </div>

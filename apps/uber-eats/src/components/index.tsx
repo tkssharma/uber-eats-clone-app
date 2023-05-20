@@ -1,19 +1,20 @@
 import React from 'react'
-import Hero from './Hero'
-import Foods from './Foods'
-import HeadlineCards from './HeadlineCards';
-import Catogery from './Catogery';
+import Hero from './landing-page/hero'
+import Foods from './landing-page/foods'
+import HeadlineCards from './landing-page/headeline-cards';
+import Catogery from './landing-page/category';
 
 function App() {
   return <>
-   
-    <div className="App ml-10 mr-10 mb-10 mr">
-    <Hero/>
-    <HeadlineCards/>
-    <Foods/>
-    <Catogery/>
+    <div className="mb-10">
+      <Hero />
+      <div className='App ml-10 mr-10 '>
+        <HeadlineCards />
+        <Foods />
+        <Catogery />
+      </div>
     </div>
-    </>
+  </>
 }
 
 export default App;
