@@ -2,7 +2,7 @@
 
 import '../../globals.css';
 
-export default function AuthLayout({ children }) {
+export default function AuthLayout({ children }: any) {
   return (
     <html lang="en">
       <head />

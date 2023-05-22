@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 
-const PageComponentTitle = ({ title, titleDescription, buttonTitle }) => {
+const PageComponentTitle = ({ title, titleDescription, buttonTitle }: any) => {
   const [modal, setModal] = useState(false);
 
   return (

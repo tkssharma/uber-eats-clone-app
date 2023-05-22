@@ -4,8 +4,9 @@ export default function Header({
   heading,
   paragraph,
   linkName,
+  user,
   linkUrl = "#",
-}) {
+}: any) {
   return (
     <div className="mb-10 mt-8">
       <div className="flex justify-center">

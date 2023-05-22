@@ -6,10 +6,14 @@ import React, { Fragment, useState } from "react";
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import Sidebar from "../../components/layout/Sidebar";
+import { useSession } from "next-auth/react";
 
-export default function RootLayout({ children }) {
+
+export default function RootLayout({ children }: any) {
 
   const [mobileNavsidebar, setMobileNavsidebar] = useState(false);
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <html lang="en">
@@ -21,7 +25,7 @@ export default function RootLayout({ children }) {
         <Sidebar mobileNavsidebar={mobileNavsidebar} />
         
         <div className="flex-grow text-gray-800">
-        <Header mobileNavsidebar={mobileNavsidebar} setMobileNavsidebar={setMobileNavsidebar} />
+        <Header user={user} mobileNavsidebar={mobileNavsidebar} setMobileNavsidebar={setMobileNavsidebar} />
             {children}
         </div>
 

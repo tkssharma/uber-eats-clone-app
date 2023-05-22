@@ -1,11 +1,10 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 
-const Modal = ({ modal, setModal }) => {
+const Modal = ({ modal, setModal }: any) => {
   //For Image Preview
   const [selectedImage, setSelectedImage] = useState();
 

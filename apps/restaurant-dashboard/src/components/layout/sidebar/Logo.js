@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/link-passhref */
 import Link from "next/link";
 import React from "react";
 

@@ -12,7 +12,7 @@ export default function Input({
   isRequired = false,
   placeholder,
   customClass,
-}) {
+}: any) {
   return (
     <div className="my-5">
       <label htmlFor={labelFor} className="sr-only">

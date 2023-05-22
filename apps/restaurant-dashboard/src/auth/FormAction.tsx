@@ -5,7 +5,7 @@ export default function FormAction({
   type = "Button",
   action = "submit",
   text,
-}) {
+}: any) {
   return (
     <>
       {type === "Button" ? (

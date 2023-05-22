@@ -6,17 +6,17 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 
 const fields = signupFields;
-let fieldsState = {};
+let fieldsState = {} as any;
 
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Signup() {
   const [signupState, setSignupState] = useState(fieldsState);
 
-  const handleChange = (e) =>
+  const handleChange = (e: any) =>
     setSignupState({ ...signupState, [e.target.id]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(signupState);
     createAccount();

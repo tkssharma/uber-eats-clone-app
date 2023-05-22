@@ -2,7 +2,8 @@
 
 import React from "react";
 
-const Dashboard = () => {
+const Dashboard = ({ user }: any) => {
+  console.log(user)
   return (
     <>
       <main className="p-6 sm:p-10 space-y-6">
