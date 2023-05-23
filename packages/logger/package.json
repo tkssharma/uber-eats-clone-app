@@ -30,7 +30,7 @@
   "devDependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "2.3.1",
-    "@nestjs/core": "^9.0.0",
+    "@nestjs/core": "9.0.0",
     "@nestjs/testing": "^9.0.0",
     "@types/jest": "27.0.2",
     "@types/express": "^4.17.13",

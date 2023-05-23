@@ -1,17 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import {
-  AiOutlineMenu,
-  AiOutlineSearch,
-  AiOutlineClose,
-  AiFillTag,
-} from "react-icons/ai";
-import { BsFillCartFill, BsFillSaveFill, BsPerson } from "react-icons/bs";
-import { TbTruckDelivery } from "react-icons/tb";
-import { FaSignOutAlt, FaUserFriends, FaWallet } from "react-icons/fa";
-import { MdFavorite, MdHelp, MdLogin } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import { UserContext, UserContextType } from "../../hooks/user-context";
-import useAuth from "../../hooks/use-auth";
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose, AiFillTag } from 'react-icons/ai';
+import { BsFillCartFill, BsFillSaveFill, BsPerson } from 'react-icons/bs';
+import { TbTruckDelivery } from 'react-icons/tb';
+import { FaSignOutAlt, FaUserFriends, FaWallet } from 'react-icons/fa';
+import { MdFavorite, MdHelp, MdLogin } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+import { UserContext, UserContextType } from '../../hooks/user-context';
+import useAuth from '../../hooks/use-auth';
 
 function Navbar() {
   const [nav, setNav] = useState(false);
@@ -22,21 +17,21 @@ function Navbar() {
 
   const handleNavigate = (path: string) => {
     setNav(false);
-    navigate(path)
-  }
+    navigate(path);
+  };
 
   const ref = useRef(null) as any;
 
   const handleLogout = () => {
     setNav(false);
     logoutUser();
-    navigate("/signin")
-  }
+    navigate('/signin');
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        setNav(false)
+        setNav(false);
       }
     };
     document.addEventListener('click', handleClickOutside, true);
@@ -51,8 +46,12 @@ function Navbar() {
                  items-center p-2"
     >
       <div className="flex items-center ">
-
-        <img onClick={() => navigate("/")} className="w-36 ml-10 cursor-pointer" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/f8f0721f871b3704cce92eb96bc6e504.svg" alt="logo" />
+        <img
+          onClick={() => navigate('/')}
+          className="w-36 ml-10 cursor-pointer"
+          src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/f8f0721f871b3704cce92eb96bc6e504.svg"
+          alt="logo"
+        />
 
         <div
           className=" hidden lg:flex items-center bg-gray-200 
@@ -75,36 +74,56 @@ function Navbar() {
         />
       </div>
       {/* cart button */}
-      <div className="flex flex-row justify-end"><div className="h-12 w-12 bg-gray-200 rounded-full flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" className="h-5 w-5 text-gray-400"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+      <div className="flex flex-row justify-end">
+        {user && (
+          <div className="h-12 w-12 bg-gray-200 rounded-full flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              aria-hidden="true"
+              className="h-5 w-5 text-gray-400"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+              ></path>
+            </svg>
 
-        <div className="bg-orange-400 4-3 w-4 justify-center items-center rounded-full flex -ml-3 -mt-3">
-          <label className=" text-white text-xs">4</label>
-
-        </div>
-      </div>
-        <div className="ml-6 mr-5 flex items-center"><div className="h-12 w-12 bg-cyan-200 rounded-full flex items-center justify-center">
-
-          <img className="w-8 h-8 rounded-full" src="https://tkssharma.com/static/profile-8bdec926a8230839ae8e804a52d43627.png" />
-        </div>
-          <div className="ml-3 flex-col flex">
-
-            <label className="text-md font-semibold">Jeremy</label><label className="text-sm text-gray-400">user</label></div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" className="h-4 w-4 ml-3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-        </div></div>
-      <div className="flex">
-
-
-        {user && <div className="flex items-center space-x-4">
-          <img className="w-10 h-10 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="" />
-          <div className="font-medium dark:text-gray">
-            <div className="text-gray-500 text-sm dark:text-gray-400">{user.email}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">Joined in August 2014</div>
+            <div className="bg-orange-400 4-3 w-4 justify-center items-center rounded-full flex -ml-3 -mt-3">
+              <label className=" text-white text-xs">4</label>
+            </div>
           </div>
-
-        </div>}
-
+        )}
+        {user && (
+          <div className="ml-6 mr-5 flex items-center">
+            <div className="h-12 w-12 bg-cyan-200 rounded-full flex items-center justify-center">
+              <img
+                className="w-8 h-8 rounded-full"
+                src="https://tkssharma.com/static/profile-8bdec926a8230839ae8e804a52d43627.png"
+              />
+            </div>
+            <div className="ml-3 flex-col flex">
+              <label className="text-md font-semibold">{user?.name?.substring(0,6)}</label>
+              <label className="text-sm text-gray-400">{user?.email?.substring(0,6)}</label>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              aria-hidden="true"
+              className="h-4 w-4 ml-3"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        )}
       </div>
-
 
       {/* mobile view */}
       {/* overlay */}
@@ -114,10 +133,8 @@ function Navbar() {
                top-10 left-0"
         />
       ) : (
-        ""
+        ''
       )}
-
-
     </div>
   );
 }

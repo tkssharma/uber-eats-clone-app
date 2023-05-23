@@ -4,7 +4,7 @@ import { AppModule } from "./app.module";
 import { createDocument } from "./docs/swagger";
 import * as cookieParser from "cookie-parser";
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { snapshot: true });
+  const app = await NestFactory.create(AppModule);
   const globalPrefix = "api/v1";
   app.setGlobalPrefix(globalPrefix);
   app.use(cookieParser());
