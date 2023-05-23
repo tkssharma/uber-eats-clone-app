@@ -1,8 +1,22 @@
-import { BrowserRouter, Route, Routes, Link, Outlet } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Link, Outlet, useNavigate } from 'react-router-dom';
 
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import useAuth from '../hooks/use-auth';
+import { UserContext, UserContextType } from '../hooks/user-context';
 
 export default function Signup() {
+
+  const navigate = useNavigate();
+  const { logoutUser } = useAuth();
+
+  const { user, setUser } = useContext(UserContext) as UserContextType;
+
+  useEffect(() => {
+    if(user){
+      navigate("/")
+    }
+  }, [user])
+  
   return (
     <main className="h-screen w-full banner">
     <div className="flex flex-col justify-center items-center pt-10 ">

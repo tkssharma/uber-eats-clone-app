@@ -48,7 +48,9 @@ export class AuthService {
     await this.usersService.updateRefreshTokenByEmail(email, refToken);
   }
   public async validateJwtPayload(payload: JwtPayload) {
-    return await this.usersService.findOneByEmail(payload.email);
+    const data = await this.usersService.findOneByEmail(payload.email);
+    delete data.password;
+    return data;
   }
 
   public async logout(user: UserEntity) {

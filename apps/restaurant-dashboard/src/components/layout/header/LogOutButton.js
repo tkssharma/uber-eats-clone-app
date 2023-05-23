@@ -1,10 +1,22 @@
 "use client";
 
 import React from "react";
+import { signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LogOutButton = () => {
+  const router = useRouter();
+
+  const HandleSignOut = () => {
+    signOut({
+      callbackUrl: `${window.location.origin}/signin`,
+    });
+  };
   return (
-    <button className="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+    <button
+      onClick={() => HandleSignOut()}
+      className="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full"
+    >
       <span className="sr-only">Log out</span>
       <svg
         aria-hidden="true"

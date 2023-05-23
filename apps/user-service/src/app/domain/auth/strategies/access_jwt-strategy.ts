@@ -14,7 +14,16 @@ export class AccessTokenJwtStrategy extends PassportStrategy(Strategy) {
     private readonly configService: ConfigService
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (request: any) => {
+          console.log(request.cookies);
+          let data = request?.cookies["access_token"];
+          if (!data) {
+            return null;
+          }
+          return data;
+        },
+      ]),
       secretOrKey: configService.get().auth.access_token_secret,
     });
   }

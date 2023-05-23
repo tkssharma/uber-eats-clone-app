@@ -89,13 +89,19 @@ export class AuthController {
   @UseGuards(AccessTokenGuard)
   @HttpCode(HttpStatus.OK)
   @ApiConsumes("application/json")
-  @Post("/logout")
-  public async logout(@Req() req: any) {
-    const user = req.user;
-    await this.service.logout(user);
-    return null;
+  @Get("/logout")
+  public async logout(@Request() req, @Response() res) {
+    res.cookie("access_token", "", {
+      httpOnly: true,
+      sameSite: "lax",
+    });
+    res.cookie("refresh_token", "", {
+      httpOnly: true,
+      sameSite: "lax",
+    });
+    //await this.service.logout(req.user)
+    return res.send();
   }
-
   @UseGuards(RefreshTokenGuard)
   @HttpCode(HttpStatus.OK)
   @ApiConsumes("application/json")

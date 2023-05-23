@@ -4,7 +4,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import React, { useEffect, useRef, useState } from "react";
 import OutsideClick from "../../../utils/outsideClick";
 
-const UserMenu = () => {
+const UserMenu = ({ user }) => {
   const [userMenuStatus, setUserMenuStatus] = useState(false);
   const buttonRef = useRef(null);
   const buttonOutsideClick = OutsideClick(buttonRef);
@@ -28,8 +28,12 @@ const UserMenu = () => {
     >
       <span className="sr-only">User Menu</span>
       <div className="hidden md:flex md:flex-col md:items-end md:leading-tight">
-        <span className="font-semibold">Grace Simmons</span>
-        <span className="text-sm text-gray-600">Lecturer</span>
+        <span className="font-semibold">
+          {user?.email ? user.email : "john@gmail.com"}
+        </span>
+        <span className="text-sm text-gray-600">
+          {user?.name ? user.name : "john doe"}
+        </span>
       </div>
       <span className="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
         <img
