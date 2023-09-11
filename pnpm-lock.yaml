@@ -729,6 +729,9 @@ importers:
 
   apps/restaurant-dashboard:
     dependencies:
+      "@eats/types":
+        specifier: "*"
+        version: link:../../packages/types
       "@heroicons/react":
         specifier: ^1.0.6
         version: 1.0.6(react@18.2.0)
@@ -750,6 +753,9 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.46.1
+        version: 7.46.1(react@18.2.0)
       swr:
         specifier: ^2.0.2
         version: 2.0.2(react@18.2.0)
@@ -22973,6 +22979,18 @@ packages:
       {
         integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==,
       }
+    dev: false
+
+  /react-hook-form@7.46.1(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-0GfI31LRTBd5tqbXMGXT1Rdsv3rnvy0FjEk8Gn9/4tp6+s77T7DPZuGEpBRXOauL+NhyGT5iaXzdIM2R6F/E+w==,
+      }
+    engines: { node: ">=12.22.0" }
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-icons@4.7.1(react@18.2.0):

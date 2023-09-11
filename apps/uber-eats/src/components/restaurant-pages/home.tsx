@@ -5,8 +5,10 @@ import {
 } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import { images } from "../../assets";
-import { Rating } from "./index";
+import  Rating  from "./rating";
 import { dummyData } from "../utils";
+import delivery_bike_icon from "../../assets/banner/2.png"
+import banner_image_spags from "../../assets/banner/1.jpeg"
 
 function Home() {
   const [data, setData] = useState({
@@ -14,8 +16,7 @@ function Home() {
     menuCategory: [],
     food: [],
     foodHolder: [],
-  });
-
+  } as any);
   useEffect(() => {
     setData({
       ...data,
@@ -50,11 +51,11 @@ function Home() {
           </div>
         </div>
 
-        <div className="bg-orange-600 rounded-2xl mt-5 ml-0 mr-10 shadow-xl">
+        <div className="bg-orange-300 rounded-2xl mt-5 ml-0 mr-10 shadow-xl">
           <div className="flex flex-row justify-between mt-3">
             <img
-              src={images?.delivery_bike_icon}
-              alt={images?.delivery_bike_icon}
+              src={delivery_bike_icon}
+              alt={delivery_bike_icon}
               className="w-48 h-44 rounded-l-2xl"
             />
 
@@ -77,8 +78,8 @@ function Home() {
             </div>
 
             <img
-              src={images?.banner_image_spags}
-              alt={images?.banner_image_spags}
+              src={banner_image_spags}
+              alt={banner_image_spags}
               className="w-36 h-44 rounded-r-2xl"
             />
           </div>
@@ -100,7 +101,7 @@ function Home() {
             setData({
               ...data,
               selectedCategory: menu,
-              food: foodHolder?.filter((e) => e?.menu_id === menu?.id),
+              food: foodHolder?.filter((e: any) => e?.menu_id === menu?.id),
             })
           }
           className={
@@ -172,7 +173,7 @@ function Home() {
 
         {/* list menus horizontally */}
         <div className="flex flex-row">
-          {menuCategory?.map((menu, index) => {
+          {menuCategory?.map((menu: any, index: number) => {
             return <MenuCard key={index} menu={menu} />;
           })}
         </div>
@@ -244,7 +245,7 @@ function Home() {
       <div className="mt-5">
         {/* list food vertically */}
         <div className="flex flex-row flex-wrap">
-          {food?.map((food_item, index) => {
+          {food?.map((food_item: any, index: number) => {
             return <FoodCard key={index} food_item={food_item} />;
           })}
         </div>
@@ -253,7 +254,7 @@ function Home() {
   }
 
   /**check if category is selected */
-  function checkSelectedCategory(menu) {
+  function checkSelectedCategory(menu: any) {
     const { selectedCategory } = data;
 
     if (
@@ -268,10 +269,10 @@ function Home() {
   }
 
   /**filter food items */
-  function filterFood(event) {
+  function filterFood(event: any) {
     const text = event.target.value;
 
-    const newData = data?.foodHolder?.filter(function (item) {
+    const newData = data?.foodHolder?.filter( (item: any) => {
       const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;

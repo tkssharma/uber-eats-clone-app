@@ -27,3 +27,23 @@ export interface MenuItem {
   price: number;
   thumbnails: string[];
 }
+
+export interface Restaurant {
+  name: string;
+  description?: string;
+  owner_id: string;
+  website_url?: string;
+  social_links?: any;
+  cuisine?: string;
+  average_price: number;
+  average_rating?: number;
+  latitude?: string;
+  is_available: string;
+  longitude?: string;
+  contact_no: string;
+  banner: string;
+  delivery_options?: string;
+  pickup_options?: string;
+  opens_at?: string;
+  closes_at?: string;
+}

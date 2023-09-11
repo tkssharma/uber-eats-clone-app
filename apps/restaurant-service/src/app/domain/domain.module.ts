@@ -14,13 +14,18 @@ import { RestaurantDishService } from "./restaurant/services/restaurant.dish.ser
 import { RestaurantDishController } from "./restaurant/controller/restaurant.dish.controller";
 import { SearchModule } from "./search/search.module";
 import { EventEmitterModule } from "@nestjs/event-emitter";
+import { DishController } from "./restaurant/controller/dish.controller";
 
 @Module({
   imports: [
     SearchModule,
     AuthModule,
     EventEmitterModule.forRoot(),
-    TypeOrmModule.forFeature([RestaurantEntity, RestaurantDishEntity]),
+    TypeOrmModule.forFeature([
+      RestaurantEntity,
+      RestaurantDishEntity,
+      RestaurantAddressEntity,
+    ]),
     DBModule.forRoot({
       entities: [
         RestaurantAddressEntity,
@@ -33,7 +38,8 @@ import { EventEmitterModule } from "@nestjs/event-emitter";
     ConfigModule,
   ],
 
-  controllers: [RestaurantController, RestaurantDishController],
+  controllers: [DishController, RestaurantController, RestaurantDishController],
   providers: [RestaurantService, RestaurantDishService],
+  exports: [RestaurantService, RestaurantDishService],
 })
 export class DomainModule {}

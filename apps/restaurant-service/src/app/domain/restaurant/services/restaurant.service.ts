@@ -22,6 +22,7 @@ import { RestaurantAddressEntity } from "../entity/restaurant.address.entity";
 import { UserMetaData } from "../../auth/guards/user";
 import { SearchService } from "../../search/search.service";
 import { EventEmitter2 } from "@nestjs/event-emitter";
+import { groupBy } from "../../utility";
 
 @Injectable()
 export class RestaurantService {
@@ -29,6 +30,8 @@ export class RestaurantService {
     private readonly logger: Logger,
     @InjectRepository(RestaurantEntity)
     private restaurantRepo: Repository<RestaurantEntity>,
+    @InjectRepository(RestaurantAddressEntity)
+    private restaurantAddRepo: Repository<RestaurantAddressEntity>,
     private readonly connection: Connection,
     private configService: ConfigService,
     private readonly searchService: SearchService,
@@ -49,10 +52,18 @@ export class RestaurantService {
 
   public async fetchRestaurantById(param: fetchRestaurantByIdDto) {
     const { id } = param;
-    return await this.restaurantRepo.find({
+    const response = await this.restaurantRepo.findOne({
       where: { id },
       relations: ["dishes"],
     });
+    const address = await this.restaurantAddRepo.findOne({
+      where: { restaurant: { id } },
+    });
+    const dishMenuItems = response.dishes;
+    const categories = groupBy(dishMenuItems, "category");
+    response.address = address;
+    response.dishes = categories;
+    return response;
   }
 
   async createRestaurant(user: UserMetaData, payload: CreateRestaurantBodyDto) {

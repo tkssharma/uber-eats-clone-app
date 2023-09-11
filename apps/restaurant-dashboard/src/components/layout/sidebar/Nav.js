@@ -66,9 +66,9 @@ const Nav = ({ sidebarOutsideClick }) => {
         </div>
 
         <NavItem
-          hrefLink="/category"
+          hrefLink="/dashboard/restaurants"
           sidebarStatus={sidebarStatus}
-          menuTitle="Category"
+          menuTitle="Restaurants"
           subMenu={false}
           subMenuArray={null}
         >
@@ -76,9 +76,9 @@ const Nav = ({ sidebarOutsideClick }) => {
         </NavItem>
 
         <NavItem
-          hrefLink="/sub-category"
+          hrefLink="/dashboard/orders"
           sidebarStatus={sidebarStatus}
-          menuTitle="Sub-Category"
+          menuTitle="Orders"
           subMenu={false}
           subMenuArray={null}
         >
@@ -87,9 +87,9 @@ const Nav = ({ sidebarOutsideClick }) => {
 
         {/* this menu has child Menu     */}
         <NavItem
-          hrefLink="#"
+          hrefLink="/dashboard/payments"
           sidebarStatus={sidebarStatus}
-          menuTitle="Chiled Menu"
+          menuTitle="Payments"
           subMenu={true}
           subMenuArray={childMenu}
         >

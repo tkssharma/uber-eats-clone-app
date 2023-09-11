@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@eats/types":"*",
     "@heroicons/react": "^1.0.6",
     "@next/font": "13.1.5",
     "axios": "^1.4.0",
@@ -16,6 +17,7 @@
     "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.46.1",
     "swr": "^2.0.2"
   },
   "devDependencies": {

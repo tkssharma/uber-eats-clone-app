@@ -5,7 +5,6 @@ import SignIn from './routes/signin';
 import SignUp from './routes/signup';
 import Search from './routes/search';
 
-import { LeftSideBar, RightSideBar } from './components/restaurant-pages'
 
 import LandingPage from "./routes/landing";
 import RestaurantPage from "./routes/restaurant";
@@ -15,6 +14,7 @@ import './styles/tailwind.css';
 import { useState } from 'react';
 import { UserContext } from './hooks/user-context';
 import FetchUser from './hooks/fetch-user';
+import LeftSideBar from './components/restaurant-pages/left-side-bar';
 
 {/* Left side bar */}
 
@@ -42,7 +42,6 @@ function AppLayout(){
     </div>
 
     {/* Right side bar */}
-    <RightSideBar />
 </div>
   )
 }
@@ -64,12 +63,11 @@ const App = () => {
           <Route path="/home" element={<LandingPage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/search" element={<Search />} />
-
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route path="/pages" element={<AppLayout />}>
-          <Route index element={<RestaurantPage />} />
-          <Route path="restaurants" element={<RestaurantPage />} />
+        <Route path="/restaurants" element={<AppLayout />}>
+          <Route path="" element={<RestaurantPage />} />
+          <Route path="/restaurants/:id" element={<RestaurantPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
