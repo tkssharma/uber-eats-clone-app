@@ -5,6 +5,7 @@ export declare class ConfigService {
     loadFromEnv(): void;
     private parseConfigFromEnv;
     private parseDBConfig;
+    private parseAWSConfig;
     private parseSwaggerConfig;
     get(): Readonly<ConfigData>;
 }

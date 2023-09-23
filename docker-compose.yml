@@ -12,6 +12,9 @@ services:
   postgres-delivery:
     image: postgres
     restart: unless-stopped
+  postgres-files:
+    image: postgres
+    restart: unless-stopped
   postgres-restaurant:
     image: postgres
     restart: unless-stopped

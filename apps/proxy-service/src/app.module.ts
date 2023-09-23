@@ -11,6 +11,7 @@ import { ReverseProxyRestaurantMiddleware } from './proxy.restaurant.middleware'
 import { ReverseProxyDeliveryMiddleware } from './proxy.delivery.middleware';
 import { ReverseProxyOrderMiddleware } from './proxy.order.middleware';
 import { ReverseProxyCartMiddleware } from './proxy.cart.middleware';
+import { ReverseProxyFilesMiddleware } from './proxy.files.middleware';
 
 @Module({
   imports: [],
@@ -39,6 +40,11 @@ export class AppModule implements NestModule {
 
     consumer.apply(ReverseProxyOrderMiddleware).forRoutes({
       path: 'v1/order-service/*',
+      method: RequestMethod.ALL,
+    });
+
+    consumer.apply(ReverseProxyFilesMiddleware).forRoutes({
+      path: 'v1/files-service/*',
       method: RequestMethod.ALL,
     });
   }

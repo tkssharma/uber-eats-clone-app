@@ -39,9 +39,9 @@
     "db:sync": "npm run typeorm:cli schema:sync"
   },
   "dependencies": {
-    "@eats/config": "1.0.3",
+    "@eats/config": "*",
     "@eats/database": "*",
-    "@eats/logger": "1.0.0",
+    "@eats/logger": "*",
     "@eats/types": "*",
     "@nestjs/elasticsearch": "^7.1.0",
     "@elastic/elasticsearch": "^7.12.0", 

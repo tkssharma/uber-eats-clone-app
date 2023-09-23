@@ -26,9 +26,11 @@ export async function GET(
     const { data } = response;
     // we got data here successfully !!
     console.log(data);
-    return new Response(data);
+    return new Response(JSON.stringify(data), { status: 200 });
+    // return res.status(200).json(data)
   } catch (err) {
-    return new Response(`error just to debug, send 500 from here `);
+    console.log(err);
+    return new Response("Internal Server Error", { status: 500 });
   }
 }
 
@@ -84,8 +86,10 @@ export async function DELETE(
     const { data } = response;
     // we got data here successfully !!
     console.log(data);
-    return new Response(data);
+    return new Response(JSON.stringify(data), { status: 200 });
+    // return res.status(200).json(data)
   } catch (err) {
-    return new Response(`error just to debug, send 500 from here `);
+    console.log(err);
+    return new Response("Internal Server Error", { status: 500 });
   }
 }

@@ -1,6 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { DEFAULT_CONFIG } from "./config.default";
-import { ConfigData, ConfigDatabase, ConfigSwagger } from "./config.interface";
+import {
+  AWSConfig,
+  ConfigData,
+  ConfigDatabase,
+  ConfigSwagger,
+} from "./config.interface";
 
 @Injectable()
 export class ConfigService {
@@ -19,6 +24,7 @@ export class ConfigService {
       port: parseInt(env.PORT!, 10),
       db: this.parseDBConfig(env, DEFAULT_CONFIG.db),
       swagger: this.parseSwaggerConfig(env, DEFAULT_CONFIG.swagger),
+      aws: this.parseAWSConfig(env, DEFAULT_CONFIG.aws),
       logLevel: env.LOG_LEVEL!,
       auth: {
         expiresIn: Number(env.TOKEN_EXPIRY),
@@ -44,6 +50,18 @@ export class ConfigService {
   ) {
     return {
       url: env.DATABASE_URL || defaultConfig.url,
+    };
+  }
+  private parseAWSConfig(
+    env: NodeJS.ProcessEnv,
+    defaultConfig: Readonly<AWSConfig>
+  ) {
+    return {
+      accessKeyId: env.AWS_ACCESS_KEY_ID || defaultConfig.accessKeyId,
+      secretAccessKey:
+        env.AWS_SECRET_ACCESS_KEY || defaultConfig.secretAccessKey,
+      region: env.AWS_REGION || defaultConfig.region,
+      bucket: env.S3_BUCKET || defaultConfig.bucket,
     };
   }
   private parseSwaggerConfig(

@@ -2,6 +2,10 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm, useWatch, Control } from "react-hook-form";
+import { useRef, useState } from "react";
+import ImagePreview from "@components/common/Imagepreview";
+import CustomFileSelector from "@components/common/FileSelctor";
+
 
 function Error({ message }: { message: string }) {
     return (
@@ -11,9 +15,18 @@ function Error({ message }: { message: string }) {
     );
 }
 
-export default function Index() {
+export default function AddRestaurant() {
   const { register, handleSubmit, watch, formState: {errors} } = useForm<any>();
-
+  const [images, setImages] = useState<File[]>([]);
+  const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      //convert `FileList` to `File[]`
+      const _files = Array.from(e.target.files);
+      // do the upload here to AWS S3
+      // upload these files to AWS S3 after getting signe durl for upload 
+      setImages(_files);
+    }
+  };
   const { data: session } = useSession();
   const user = session?.user;
   const router = useRouter();
@@ -21,6 +34,7 @@ export default function Index() {
   const onSubmit = (data: any) => {
     console.log(data)
   }
+
   // list of restaurants
   return (
     <>  <div
@@ -52,6 +66,11 @@ export default function Index() {
         />
          {errors.description && <Error message={errors.description.message!} />}
 
+         <CustomFileSelector
+        accept="image/png, image/jpeg"
+        onChange={handleFileSelected}
+      />
+      <ImagePreview images={images} />
 
         <label htmlFor="restaurant-logo">Restaurant Logo</label>
         <input

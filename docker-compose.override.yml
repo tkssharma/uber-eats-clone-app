@@ -31,7 +31,18 @@ services:
       - ./docker-utils:/docker-entrypoint-initdb.d
       - delivery_api_data:/data/postgres
     ports:
-      - 5439:5432  
+      - 5439:5432 
+
+  postgres-files:
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="files-api","files-api-testing"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - delivery_api_data:/data/postgres
+    ports:
+      - 5421:5432  
 
   postgres-order:
     environment:

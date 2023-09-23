@@ -21,6 +21,12 @@ exports.DEFAULT_CONFIG = {
         username: "",
         password: "",
     },
+    aws: {
+        accessKeyId: "",
+        secretAccessKey: "",
+        region: "",
+        bucket: "",
+    },
     logLevel: "",
     elastic: {
         url: "",

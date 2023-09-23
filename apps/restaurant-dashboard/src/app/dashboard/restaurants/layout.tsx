@@ -3,9 +3,15 @@
 
 import React, { Fragment, useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({ children }: any) {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  const addRestaurant = () => {
+    router.push(`dashboard/restaurants/add`)
+  }
 
   return (
     <div className="p-6 sm:p-10 space-y-6">
@@ -15,7 +21,7 @@ export default function RootLayout({ children }: any) {
           <h2 className="text-gray-600 ml-0.5">Manage Restaurants</h2>
         </div>
         <div className="flex flex-wrap items-start justify-end -mb-3">
-          <button className="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
+          <button onClick={()=> addRestaurant()} className="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
             <svg
               aria-hidden="true"
               fill="none"
