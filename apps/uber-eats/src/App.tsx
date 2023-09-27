@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { UserContext } from './hooks/user-context';
 import FetchUser from './hooks/fetch-user';
 import LeftSideBar from './components/restaurant-pages/left-side-bar';
+import RightSideBar from './components/restaurant-pages/right-side-bar';
 
 {/* Left side bar */}
 
@@ -41,6 +42,7 @@ function AppLayout(){
       <Outlet />
     </div>
 
+   <RightSideBar />
     {/* Right side bar */}
 </div>
   )
@@ -65,9 +67,15 @@ const App = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route path="/restaurants" element={<AppLayout />}>
+        <Route path="/eats" element={<AppLayout />}>
           <Route path="" element={<RestaurantPage />} />
-          <Route path="/restaurants/:id" element={<RestaurantPage />} />
+          <Route path="restaurants" element={<RestaurantPage />} />
+          <Route path="restaurants/:id" element={<RestaurantPage />} />
+          <Route path="orders" element={<RestaurantPage />} />
+          <Route path="settings" element={<RestaurantPage />} />
+          <Route path="chat" element={<RestaurantPage />} />
+          <Route path="fav" element={<RestaurantPage />} />
+          <Route path="payments" element={<RestaurantPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

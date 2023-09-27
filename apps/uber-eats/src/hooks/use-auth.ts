@@ -50,7 +50,9 @@ export default function useAuth() {
     setUser(null);
     return axios
       .get(`/api/v1/auth-service/auth/logout`)
-      .then(async () => {})
+      .then(async () => {
+        navigate("/");
+      })
       .catch((err: any) => {
         setError(err.response.data);
       });

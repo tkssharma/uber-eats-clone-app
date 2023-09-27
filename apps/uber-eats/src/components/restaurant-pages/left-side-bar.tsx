@@ -1,5 +1,5 @@
 import { LogoutIcon } from "@heroicons/react/outline";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   HomeIcon,
@@ -9,6 +9,8 @@ import {
   CogIcon,
   CashIcon,
 } from "@heroicons/react/outline";
+import useAuth from "../../hooks/use-auth";
+import { UserContext, UserContextType } from "../../hooks/user-context";
 const icon_style = "h-6 w-6 text-gray-500 hover:text-white";
 
 export const LeftBarRoutes = [
@@ -51,7 +53,9 @@ export const LeftBarRoutes = [
 ];
 export default function LeftSideBar() {
   const navigation = useNavigate();
+  const { logoutUser } = useAuth();
 
+  const { user, setUser } = useContext(UserContext) as UserContextType;
   return (
     <>
       <div className="p-5 border-l-2 w-28 h-screen bg-white fixed shadow-md">
@@ -70,7 +74,7 @@ export default function LeftSideBar() {
           })}
         </div>
 
-        <div
+        <div onClick={() => logoutUser()}
           className=" w-16 h-16 hover:bg-gradient-to-r bg-transparent from-orange-500 to-orange-500 
                  flex justify-center items-center rounded-full absolute bottom-2"
         >

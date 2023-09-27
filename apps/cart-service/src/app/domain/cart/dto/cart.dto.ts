@@ -109,13 +109,12 @@ export class MenuItemBodyDto {
 
   @ApiProperty({
     description: "thumbnails",
-    example: ["https://google.com/banner.png"],
-    required: true,
+    example: "https://google.com/banner.png",
+    required: false,
   })
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  public thumbnails!: string[];
+  @IsString()
+  public thumbnails!: string;
 }
 
 export class CreateCartMenuItemBodyDto {
@@ -141,7 +140,7 @@ export class CreateCartMenuItemBodyDto {
       ingredients: "ingredients",
       food_type: "vegan",
       price: 500,
-      thumbnails: ["https://google.com/banner.png"],
+      thumbnails: "https://google.com/banner.png",
     },
     required: true,
   })

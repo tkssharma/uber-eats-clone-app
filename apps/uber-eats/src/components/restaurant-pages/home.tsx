@@ -9,23 +9,45 @@ import  Rating  from "./rating";
 import { dummyData } from "../utils";
 import delivery_bike_icon from "../../assets/banner/2.png"
 import banner_image_spags from "../../assets/banner/1.jpeg"
+import { useDispatch, useSelector } from "react-redux";
+import { changeFoodCategorySelection, fetchDishesForLandingPage, listDishesForLandingPage } from "../../redux/dishes/dishes.slice";
+import { addCartItems, removeCartItems } from "../../redux/cart/cart.slice";
+import { MinusCircleIcon } from "@heroicons/react/solid";
 
 function Home() {
-  const [data, setData] = useState({
-    selectedCategory: null,
-    menuCategory: [],
-    food: [],
-    foodHolder: [],
-  } as any);
+  const dispatch = useDispatch();
+  const { data } = useSelector(listDishesForLandingPage);
+
+  async function addToCart(dish: any) {
+    console.log(dish);
+    dispatch(addCartItems(
+      {
+        "restaurant_id": dish.restarant_id,
+        "menu_item": {
+          ...dish,
+          "id": dish.dish_id,
+        }
+      }
+    ))
+}
+
+async function removeFromCart(dish: any) {
+  dispatch(removeCartItems({
+    "restaurant_id": dish.restarant_id,
+    "menu_item": {
+      ...dish,
+      "id": dish.dish_id,
+    }
+  }))
+}
+
   useEffect(() => {
-    setData({
-      ...data,
-      selectedCategory: dummyData?.menuData[0],
-      menuCategory: dummyData?.menuData,
-      foodHolder: dummyData?.foodData,
-      food: dummyData?.foodData,
-    });
+    dispatch(fetchDishesForLandingPage())
   }, []);
+
+  const changeCategorySelection = (menu: any) => {
+    dispatch(changeFoodCategorySelection(menu))
+  }
 
   /**top section UI */
   function TopSection() {
@@ -97,13 +119,7 @@ function Home() {
       const { menu } = props;
       return (
         <button
-          onClick={() =>
-            setData({
-              ...data,
-              selectedCategory: menu,
-              food: foodHolder?.filter((e: any) => e?.menu_id === menu?.id),
-            })
-          }
+          onClick={() => changeCategorySelection(menu)}
           className={
             checkSelectedCategory(menu)
               ? "bg-gradient-to-r bg-transparent from-orange-500 toto-orange-500adow-2xl rounded-2xl ml-3   items-center justify-center mt-5 w-32"
@@ -154,15 +170,7 @@ function Home() {
         <div className="justify-between flex-row flex mr-10">
           <p className="text-xl font-bold">Menu Category</p>
 
-          <button
-            onClick={() =>
-              setData({
-                ...data,
-                food: foodHolder,
-              })
-            }
-            className="h-10 items-center justify-center flex align-baseline"
-          >
+          <button>
             <p className="text-sm text-orange-400">View All</p>
 
             <div className="bg-orange-400 h-6 w-6 justify-center items-center rounded-md ml-3 flex">
@@ -183,7 +191,7 @@ function Home() {
 
   /**food UI */
   function Food() {
-    const { food } = data;
+    const { foodHolder } = data;
 
     /**Food Card UI*/
     const FoodCard = ({ ...props }) => {
@@ -219,21 +227,29 @@ function Home() {
                     $
                   </label>
                   <label className="font-bold text-md">
-                    {food_item?.price.toFixed(2)}
+                    {food_item?.price}
                   </label>
                 </div>
 
-                {/* add icon */}
+                <div className="flex justify-end">
                 <button
-                  onClick={() => {
-                    console.log(food_item);
-                  }}
+                  onClick={() => addToCart(food_item)}
                   className=" h-8 w-8 justify-center items-center rounded-full flex 
                   bg-gradient-to-r bg-transparent from-orange-500 to-orange-500 
                   shadow-2xl"
                 >
                   <PlusIcon className="h-4 w-4 text-white" />
                 </button>
+                <button
+                  onClick={() => removeFromCart(food_item)}
+                  className=" h-8 w-8 justify-center items-center rounded-full flex 
+                  bg-gradient-to-r bg-transparent from-orange-500 to-orange-500 
+                  shadow-2xl"
+                >
+                  <MinusCircleIcon className="h-4 w-4 text-white" />
+                </button>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -245,7 +261,7 @@ function Home() {
       <div className="mt-5">
         {/* list food vertically */}
         <div className="flex flex-row flex-wrap">
-          {food?.map((food_item: any, index: number) => {
+          {foodHolder?.map((food_item: any, index: number) => {
             return <FoodCard key={index} food_item={food_item} />;
           })}
         </div>
@@ -278,7 +294,7 @@ function Home() {
       return itemData.indexOf(textData) > -1;
     });
 
-    setData({ ...data, food: newData, search: text });
+    // setData({ ...data, food: newData, search: text });
   }
 
   return (

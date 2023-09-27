@@ -20,7 +20,7 @@ export default function Login() {
 
   useEffect(() => {
     if(user){
-      navigate("/")
+      navigate("/eats/restaurants")
     }
   }, [user])
   
