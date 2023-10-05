@@ -1,32 +1,19 @@
-import {
-  ConflictException,
-  ForbiddenException,
-  Injectable,
-} from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { ConfigService } from "@eats/config";
 import { Logger } from "@eats/logger";
-import { Like, Repository, Connection, QueryRunner } from "typeorm";
-import * as bcrypt from "bcrypt";
+import { Repository, Connection } from "typeorm";
 
-import { NotFoundException } from "@nestjs/common";
-import { CartEntity } from "../entity/cart.entity";
-import {
-  AddressDto,
-  CreateRestaurantBodyDto,
-  SearchQueryDto,
-  UpdateRestaurantBodyDto,
-  fetchRestaurantByIdDto,
-} from "../dto/cart.dto";
+import { OrderEntity } from "../entity/order.entity";
+import { CreateRestaurantBodyDto } from "../dto/cart.dto";
 import { UserMetaData } from "../../auth/guards/user";
 import { EventEmitter2 } from "@nestjs/event-emitter";
 
 @Injectable()
-export class CartService {
+export class OrderService {
   constructor(
     private readonly logger: Logger,
-    @InjectRepository(CartEntity)
-    private cartRepo: Repository<CartEntity>,
+    @InjectRepository(OrderEntity)
+    private cartRepo: Repository<OrderEntity>,
     private readonly connection: Connection,
     private eventEmitter: EventEmitter2
   ) {}

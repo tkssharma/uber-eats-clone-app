@@ -7,26 +7,30 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
 } from "typeorm";
+import { MenuItemBodyDto } from "../dto/payment.dto";
 
-@Entity("cart")
-export class CartEntity extends BaseEntity {
+@Entity("payment")
+export class PaymentEntity extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   public id!: string;
 
-  @Column({ type: "uuid", select: true })
+  @Column({ type: "varchar", select: true })
   public user_id!: string;
-
-  @Column({ type: "uuid", select: true })
-  public menu_item_id!: string;
 
   @Column({ type: "uuid", select: true })
   public restaurant_id!: string;
 
-  @Column({ type: "jsonb", default: null })
-  public menu_item!: any;
+  @Column({ type: "uuid", select: true })
+  public order_id!: string;
 
-  @Column({ type: "int", default: null })
-  public count!: number;
+  @Column({ type: "varchar", default: "draft" })
+  public status!: string;
+
+  @Column({ type: "int", select: true })
+  public amount!: number;
+
+  @Column({ type: "jsonb", default: null })
+  public menu_items!: MenuItemBodyDto[];
 
   @CreateDateColumn({
     type: "timestamptz",

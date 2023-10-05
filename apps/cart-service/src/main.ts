@@ -9,12 +9,11 @@ async function bootstrap() {
   const globalPrefix = "api/v1";
   app.setGlobalPrefix(globalPrefix);
   app.use(cookieParser());
-
   app.use((req, _, next) => {
     //console.log(`Got invoked: '${req.originalUrl}'`);
     next();
   });
   createDocument(app);
-  await app.listen(process.env.PORT || 3004);
+  await app.listen(process.env.PORT || 3003);
 }
 bootstrap();

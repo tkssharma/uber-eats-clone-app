@@ -4,9 +4,12 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "@chakra-ui/react": "^2.8.1",
     "@craco/craco": "^6.3.0",
     "@heroicons/react": "^1.0.6",
     "@reduxjs/toolkit": "^1.7.1",
+    "@stripe/react-stripe-js": "^2.3.1",
+    "@stripe/stripe-js": "^2.1.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

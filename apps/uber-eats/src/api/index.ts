@@ -23,7 +23,7 @@ export class ExternalApis {
   }
   static async removeCartItems(payload: any) {
     const url = `${this.url}/cart-service/cart`;
-    const response = await axios.delete(url, payload);
+    const response = await axios.put(url, payload);
     return response.data;
   }
   static async fetchAddress(config: any) {

@@ -39,6 +39,7 @@ function RightSideBar() {
   const { data } = useSelector(CartItemsSelector)
 
   const { user, setUser } = useContext(UserContext) as UserContextType;
+  
   useEffect(() => {
      dispatch(fetchCartItems())
   }, [])
@@ -66,8 +67,9 @@ function RightSideBar() {
                 <label className="font-bold text-sm truncate">{cart_item?.name}</label>
 
                 <div>
+                  <label className="text-sm ml-1">{cart_item?.count}</label>
                   <label className=" text-orange-500 text-xs">x</label>
-                  <label className="text-sm ml-1">{cart_item?.quantity}</label>
+                  <label className="text-sm ml-1">{cart_item?.price}</label>
                 </div>
 
               </div>
@@ -77,7 +79,7 @@ function RightSideBar() {
             {/* right side */}
             <div>
               <label className=" text-orange-500 font-bold text-xs">$</label>
-              <label className="font-bold text-md ml-1">{(cart_item?.price)}</label>
+              <label className="font-bold text-md ml-1">{(Number(cart_item?.price) *  Number(cart_item?.count))}</label>
             </div>
           </div>
 

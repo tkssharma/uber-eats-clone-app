@@ -37,6 +37,7 @@
 | order service    | 3006    |
 | restaurant admin  |  3007    |
 | files service | 3008 |
+| payment service | 3009 |
 
 ## How To Use
 

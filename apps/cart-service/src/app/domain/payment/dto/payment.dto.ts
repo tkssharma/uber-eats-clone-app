@@ -120,7 +120,7 @@ export class MenuItemBodyDto {
   public thumbnails!: string;
 }
 
-export class CreateCartMenuItemBodyDto {
+export class CreatePaymentBodyDto {
   @ApiProperty({
     description: "restaurant_id",
     example: "5272ec36-d9db-11ed-afa1-0242ac120002",
@@ -131,29 +131,46 @@ export class CreateCartMenuItemBodyDto {
   public restaurant_id!: string;
 
   @ApiProperty({
-    description: "menu_item object",
-    example: {
-      id: "5272ec36-d9db-11ed-afa1-0242ac120009",
-      name: "paneer tikka masala",
-      description:
-        "Paneer tikka or Paneer Soola or Chhena Soola is an Indian dish made from chunks of paneer/ chhena marinated in spices and grilled in a tandoor. It is a vegetarian alternative to chicken tikka and other meat dishes. It is a popular dish that is widely available in India and countries with an Indian diaspora",
-      cuisine_type: "indian",
-      meal_type: "breakfast",
-      category: "category",
-      ingredients: "ingredients",
-      food_type: "vegan",
-      count: 1,
-      price: 500,
-      thumbnails: "https://google.com/banner.png",
-    },
+    description: "order_id",
+    example: "5272ec36-d9db-11ed-afa1-0242ac120002",
     required: true,
   })
-  @IsObject()
+  @IsUUID()
+  @IsString()
+  public order_id!: string;
+
+  @ApiProperty({
+    description: "menu_item object",
+    example: [
+      {
+        id: "5272ec36-d9db-11ed-afa1-0242ac120009",
+        name: "paneer tikka masala",
+        description:
+          "Paneer tikka or Paneer Soola or Chhena Soola is an Indian dish made from chunks of paneer/ chhena marinated in spices and grilled in a tandoor. It is a vegetarian alternative to chicken tikka and other meat dishes. It is a popular dish that is widely available in India and countries with an Indian diaspora",
+        cuisine_type: "indian",
+        meal_type: "breakfast",
+        category: "category",
+        ingredients: "ingredients",
+        food_type: "vegan",
+        count: 1,
+        price: 500,
+        thumbnails: "https://google.com/banner.png",
+      },
+    ],
+    required: true,
+  })
+  @IsArray()
   @ValidateNested()
   @ValidateType(() => MenuItemBodyDto)
-  public menu_item!: MenuItemBodyDto;
+  public menu_items!: MenuItemBodyDto[];
 }
 
-export class UpdateCartMenuItemBodyDto extends PartialType(
-  CreateCartMenuItemBodyDto
-) {}
+export class UpdatePaymentBodyDto extends PartialType(CreatePaymentBodyDto) {
+  @ApiProperty({
+    description: "status",
+    example: "success/failure",
+    required: true,
+  })
+  @IsString()
+  public status!: string;
+}

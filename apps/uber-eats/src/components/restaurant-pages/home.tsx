@@ -52,7 +52,7 @@ async function removeFromCart(dish: any) {
   /**top section UI */
   function TopSection() {
     return (
-      <div>
+      <div className="max-w-[1400px]">
         <div className="justify-between flex-row flex mr-10">
           <p className="text-2xl font-bold">Today Menu &#128523;</p>
 
@@ -166,7 +166,7 @@ async function removeFromCart(dish: any) {
     };
 
     return (
-      <div className="mt-8">
+      <div className="mt-8 max-w-[1400px]">
         <div className="justify-between flex-row flex mr-10">
           <p className="text-xl font-bold">Menu Category</p>
 
@@ -198,7 +198,7 @@ async function removeFromCart(dish: any) {
       const { food_item } = props;
 
       return (
-        <div className="w-56 ml-5 items-center justify-center mt-3">
+        <div className="ml-5 items-center justify-center mt-3">
           <div className="mt-0 mb-5 mr-10 ml-10 items-center justify-center content-center flex flex-col relative">
             <div className="object-cover">
               <img
@@ -258,7 +258,7 @@ async function removeFromCart(dish: any) {
     };
 
     return (
-      <div className="mt-5">
+      <div className="mt-5 max-w-[1400px]">
         {/* list food vertically */}
         <div className="flex flex-row flex-wrap">
           {foodHolder?.map((food_item: any, index: number) => {

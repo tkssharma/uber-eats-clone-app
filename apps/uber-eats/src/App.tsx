@@ -4,7 +4,7 @@ import Header from './components/landing-page/navbar';
 import SignIn from './routes/signin';
 import SignUp from './routes/signup';
 import Search from './routes/search';
-
+import CheckoutPage from "./routes/checkout"
 
 import LandingPage from "./routes/landing";
 import RestaurantPage from "./routes/restaurant";
@@ -38,7 +38,7 @@ function AppLayout(){
     <LeftSideBar />
 
     {/* Middle Section for children */}
-    <div className=" ml-32 mr-96">
+    <div className=" ml-32 w-full">
       <Outlet />
     </div>
 
@@ -71,7 +71,7 @@ const App = () => {
           <Route path="" element={<RestaurantPage />} />
           <Route path="restaurants" element={<RestaurantPage />} />
           <Route path="restaurants/:id" element={<RestaurantPage />} />
-          <Route path="orders" element={<RestaurantPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
           <Route path="settings" element={<RestaurantPage />} />
           <Route path="chat" element={<RestaurantPage />} />
           <Route path="fav" element={<RestaurantPage />} />
