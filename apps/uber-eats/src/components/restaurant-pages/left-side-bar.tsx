@@ -1,4 +1,4 @@
-import { LogoutIcon } from "@heroicons/react/outline";
+import { BeakerIcon, FolderOpenIcon, LogoutIcon, MapIcon, SearchCircleIcon, SearchIcon, ShoppingBagIcon } from "@heroicons/react/outline";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/outline";
 import useAuth from "../../hooks/use-auth";
 import { UserContext, UserContextType } from "../../hooks/user-context";
+import { FaMapMarked } from "react-icons/fa";
 const icon_style = "h-6 w-6 text-gray-500 hover:text-white";
 
 export const LeftBarRoutes = [
@@ -23,20 +24,38 @@ export const LeftBarRoutes = [
   {
     id: 2,
     name: "Chat",
-    route: "/chat",
+    route: "/eats/chat",
     icon: <ChatAlt2Icon className={icon_style} />,
+  },
+  {
+    id: 10,
+    name: "Search",
+    route: "/search",
+    icon: <SearchIcon className={icon_style} />,
+  },
+  {
+    id: 9,
+    name: "Restaurants",
+    route: "/eats/restaurants",
+    icon: <FolderOpenIcon className={icon_style} />,
   },
   {
     id: 3,
     name: "Wallet",
-    route: "/wallet",
+    route: "/eats/wallet",
     icon: <CashIcon className={icon_style} />,
+  },
+  {
+    id: 3,
+    name: "Track",
+    route: "/eats/track",
+    icon: <FaMapMarked className={icon_style} />,
   },
   {
     id: 4,
     name: "Orders",
-    route: "/orders",
-    icon: <ClipboardListIcon className={icon_style} />,
+    route: "/eats/checkout",
+    icon: <ShoppingBagIcon className={icon_style} />,
   },
   {
     id: 5,

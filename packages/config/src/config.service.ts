@@ -31,6 +31,10 @@ export class ConfigService {
         access_token_secret: env.JWT_ACCESS_TOKEN_SECRET!,
         refresh_token_secret: env.JWT_REFRESH_TOKEN_SECRET!,
       },
+      redis: {
+        host: env.REDIS_HOST!,
+        port: Number(env.REDIS_PORT),
+      },
       google: {
         oauth_google_id: env.OAUTH_GOOGLE_ID!,
         oauth_google_callback: env.OAUTH_GOOGLE_REDIRECT_URL!,

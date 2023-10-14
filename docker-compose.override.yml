@@ -1,5 +1,13 @@
 version: '3'
 services:
+  rmq-listerner:
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+
   postgres-user:
     environment:
       - POSTGRES_USER=api

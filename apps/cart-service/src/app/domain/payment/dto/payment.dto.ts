@@ -174,3 +174,30 @@ export class UpdatePaymentBodyDto extends PartialType(CreatePaymentBodyDto) {
   @IsString()
   public status!: string;
 }
+
+export class UpdateByIdDto {
+  @ApiProperty({
+    description: "payment_id",
+    example: "5272ec36-d9db-11ed-afa1-0242ac120002",
+    required: true,
+  })
+  @IsUUID()
+  public id!: string;
+}
+
+export enum Status {
+  "success" = "success",
+  "failure" = "failure",
+}
+
+export class UpdateByIdQueryDto {
+  @ApiProperty({
+    description: "success/failure",
+    example: Status.success,
+    enum: Status,
+    required: true,
+  })
+  @IsEnum(Status)
+  @IsString()
+  public status!: string;
+}

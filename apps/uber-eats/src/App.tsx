@@ -16,6 +16,7 @@ import { UserContext } from './hooks/user-context';
 import FetchUser from './hooks/fetch-user';
 import LeftSideBar from './components/restaurant-pages/left-side-bar';
 import RightSideBar from './components/restaurant-pages/right-side-bar';
+import TrackOrderPage from './components/track-order/track-order';
 
 {/* Left side bar */}
 
@@ -55,6 +56,7 @@ const App = () => {
     setUser, 
     isLoading } = FetchUser();
   return (
+    
     <UserContext.Provider value={{user, 
       setUser, 
       isLoading}}>
@@ -72,6 +74,7 @@ const App = () => {
           <Route path="restaurants" element={<RestaurantPage />} />
           <Route path="restaurants/:id" element={<RestaurantPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="track" element={<TrackOrderPage />} />
           <Route path="settings" element={<RestaurantPage />} />
           <Route path="chat" element={<RestaurantPage />} />
           <Route path="fav" element={<RestaurantPage />} />

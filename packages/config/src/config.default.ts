@@ -11,6 +11,10 @@ export const DEFAULT_CONFIG: ConfigData = {
     access_token_secret: "",
     refresh_token_secret: "",
   },
+  redis: {
+    host: "localhost",
+    port: 6379,
+  },
   google: {
     oauth_google_id: "",
     oauth_google_callback: "",

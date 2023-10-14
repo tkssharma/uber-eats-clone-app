@@ -26,48 +26,77 @@ export class ExternalApis {
     const response = await axios.put(url, payload);
     return response.data;
   }
-  static async fetchAddress(config: any) {
-    const url = `/api/v1/users/addresses`;
-    const response = await axios.get(url, config);
+  static async fetchAddress() {
+    const url = `/api/v1/auth-service/users/address`;
+    const response = await axios.get(url);
     return response.data;
   }
 
-  static async createAddress(payload: any, config: any) {
-    const url = `/api/v1/users/addresses`;
-    const response = await axios.post(url, payload, config);
+  static async createAddress(payload: any) {
+    const url = `/api/v1/auth-service/users/address`;
+    const response = await axios.post(url, payload);
     return response.data;
   }
 
-  static async createPayment({ cart }: any, config: any) {
-    const response = await axios.post("/api/v1/payments", cart, config);
+  static async createPayment({ cart }: any) {
+    const response = await axios.post("/api/v1/payment-service/payments", cart);
     return response.data;
   }
 
-  static async updatePayment({ cart }: any, config: any) {
-    const response = await axios.put("/api/v1/payments", cart, config);
-    return response.data;
-  }
-
-  static async updatePaymentStatusSuccess({ cart }: any, config: any) {
+  static async updatePayment({ cart }: any) {
     const response = await axios.put(
-      "/api/v1/payments",
-      { status: "success", ...cart },
-      config
+      "/api/v1/payment-service/payments/confirm-payment",
+      cart
     );
     return response.data;
   }
 
-  static async updatePaymentStatusFailed({ cart }: any, config: any) {
-    const response = await axios.put(
-      "/api/v1/payments",
-      { status: "failure", ...cart },
-      config
-    );
+  static async updatePaymentStatusSuccess({ cart }: any) {
+    const response = await axios.put("/api/v1/payments", {
+      status: "success",
+      ...cart,
+    });
     return response.data;
   }
 
-  static async createOrder({ cart }: any, config: any) {
-    const response = await axios.post("/api/v1/orders", cart, config);
+  static async updatePaymentStatusFailed({ cart }: any) {
+    const response = await axios.put("/api/v1/payments", {
+      status: "failure",
+      ...cart,
+    });
+    return response.data;
+  }
+
+  static async createOrder(data: any) {
+    const response = await axios.post("/api/v1/order-service/order", data);
+    return response.data;
+  }
+  static async fetchLatestOrder() {
+    const response = await axios.get("/api/v1/order-service/order");
+    return response.data;
+  }
+  static async confirmOrder(id: string) {
+    const response = await axios.patch(
+      `/api/v1/order-service/order/${id}?status=success`
+    );
+    return response.data;
+  }
+  static async confirmPayment(id: string) {
+    const response = await axios.patch(
+      `/api/v1/payment-service/payments/${id}?status=success`
+    );
+    return response.data;
+  }
+  static async cancelOrder(id: string) {
+    const response = await axios.patch(
+      `/api/v1/order-service/order/${id}?status=failure`
+    );
+    return response.data;
+  }
+  static async cancelPayment(id: string) {
+    const response = await axios.patch(
+      `/api/v1/payment-service/payments/${id}?status=failure`
+    );
     return response.data;
   }
 }

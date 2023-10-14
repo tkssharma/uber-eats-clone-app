@@ -20,6 +20,9 @@ export class CartEntity extends BaseEntity {
   @Column({ type: "uuid", select: true })
   public restaurant_id!: string;
 
+  @Column({ type: "jsonb", select: true })
+  public restaurant!: any;
+
   @Column({ type: "jsonb", default: null })
   public menu_items!: MenuItemBodyDto[];
 

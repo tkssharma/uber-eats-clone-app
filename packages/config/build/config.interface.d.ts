@@ -35,9 +35,14 @@ export interface UserServiceConfigOptions {
     host: string;
     port: number;
 }
+export interface Redis {
+    host: string;
+    port: number;
+}
 export interface ConfigData {
     env: string;
     port: number;
+    redis: Redis;
     db: ConfigDatabase;
     swagger: ConfigSwagger;
     logLevel: string;

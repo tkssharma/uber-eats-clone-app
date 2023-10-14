@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CartItemsSelector, addCartItems, fetchCartItems, removeCartItems } from '../../redux/cart/cart.slice';
 import useAuth from '../../hooks/use-auth';
 import { UserContext, UserContextType } from '../../hooks/user-context';
+import {  useNavigate } from 'react-router-dom';
 
 export const cartData = [
   {
@@ -37,9 +38,12 @@ function RightSideBar() {
   const dispatch = useDispatch()
   const { logoutUser } = useAuth();
   const { data } = useSelector(CartItemsSelector)
-
+  const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext) as UserContextType;
   
+  const goTo = () => {
+    navigate('/eats/checkout');
+  }
   useEffect(() => {
      dispatch(fetchCartItems())
   }, [])
@@ -119,7 +123,7 @@ function RightSideBar() {
         {/* checkout button */}
 
         <div className="flex flex-row justify-center mt-10 mb-10">
-          <button className="text-white flex  mt-3
+          <button onClick={() => goTo()} className="text-white flex  mt-3
            bg-gradient-to-r bg-transparent from-orange-300 to-orange-500
            rounded-3xl items-center justify-center text-center">
 
@@ -166,6 +170,55 @@ function RightSideBar() {
         </>
       )
     }
+
+    function Message () {
+      return (
+        <div className='width-[10%]  flex flex-row justify-end'>
+        <div className=' border  bg-white p-8'>
+          <input
+            className='font-extralight w-full  bg-gray-100 h-8 p-2'
+            type='text'
+            name=''
+            id=''
+            placeholder='“Any suggestions? We will pass it on...'
+          />
+          <br />
+          <br />
+    
+          <br />
+          <button className='h-10 p-2 w-full border-dashed border-2 border-gray-300 hover:bg-gray-200'>
+            Apply Coupon
+          </button>
+          <br />
+          <br />
+
+          <div className='col font-medium mb-2'>
+            <h2>Bill Details</h2>
+          </div>
+
+          <div className='col text-xs font-medium p-1'>Item Total</div>
+
+          <div className='col  text-xs font-medium pb-2'>Delivery Fee 🛈</div>
+          <hr className='border border-gray-300' />
+
+          <div className=' text-sm font-extralight pb-3 pt-3 '>
+            Govt Taxes & Restaurant Charges 🛈
+          </div>
+          <hr style={{ border: "1px solid black" }} />
+          <div className='flex justify-between p-2'>
+            <div className='  font-semibold '>TO PAY</div>
+            ₹{" "}
+            {(data.menu_items?.length > 0 &&
+              data.menu_items?.reduce(
+                (acc: any, val: any) => acc + (val.price * val.count),
+                0
+              )) ||
+              0}
+          </div>
+        </div>
+      </div>
+      )
+    }
   
 
   return (
@@ -174,6 +227,8 @@ function RightSideBar() {
       {MiniNavBar()}
       {/* render Order Menu */}
       {OrderMenu()}
+
+      {Message()}
 
     </div>
   )

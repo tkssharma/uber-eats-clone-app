@@ -66,6 +66,7 @@ export class CartService {
         user_id: user.userId,
         restaurant_id: restaurant_id,
         menu_items: existingItems,
+        restaurant: payload.restaurant,
       });
     }
   }

@@ -23,6 +23,7 @@ function Home() {
     dispatch(addCartItems(
       {
         "restaurant_id": dish.restarant_id,
+        "restaurant": dish.restaurant,
         "menu_item": {
           ...dish,
           "id": dish.dish_id,
@@ -33,6 +34,7 @@ function Home() {
 
 async function removeFromCart(dish: any) {
   dispatch(removeCartItems({
+    "restaurant": dish.restaurant,
     "restaurant_id": dish.restarant_id,
     "menu_item": {
       ...dish,

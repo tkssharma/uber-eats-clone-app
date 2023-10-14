@@ -131,6 +131,14 @@ export class CreateCartMenuItemBodyDto {
   public restaurant_id!: string;
 
   @ApiProperty({
+    description: "restaurant",
+    example: {},
+    required: true,
+  })
+  @IsObject()
+  public restaurant!: any;
+
+  @ApiProperty({
     description: "menu_item object",
     example: {
       id: "5272ec36-d9db-11ed-afa1-0242ac120009",

@@ -10,6 +10,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Put,
   Query,
@@ -38,7 +39,12 @@ import {
 } from "src/app/app.constants";
 import { PaymentService } from "../services/payment.service";
 import { Type } from "class-transformer";
-import { CreatePaymentBodyDto, UpdatePaymentBodyDto } from "../dto/payment.dto";
+import {
+  CreatePaymentBodyDto,
+  UpdateByIdDto,
+  UpdateByIdQueryDto,
+  UpdatePaymentBodyDto,
+} from "../dto/payment.dto";
 import { User, UserMetaData } from "../../auth/guards/user";
 import { AccessTokenGuard } from "../../auth/guards/access_token.guard";
 
@@ -84,5 +90,21 @@ export class PaymentController {
     @Body() payload: UpdatePaymentBodyDto
   ) {
     return await this.service.updatePayment(user, payload);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @ApiConsumes("application/json")
+  @ApiNotFoundResponse({ description: NO_ENTITY_FOUND })
+  @ApiForbiddenResponse({ description: UNAUTHORIZED_REQUEST })
+  @ApiUnprocessableEntityResponse({ description: BAD_REQUEST })
+  @ApiInternalServerErrorResponse({ description: INTERNAL_SERVER_ERROR })
+  @Patch("/:id")
+  @UseGuards(AccessTokenGuard)
+  public async confirmPayment(
+    @User() user: UserMetaData,
+    @Param() param: UpdateByIdDto,
+    @Query() query: UpdateByIdQueryDto
+  ) {
+    return await this.service.confirmPayment(user, param, query);
   }
 }

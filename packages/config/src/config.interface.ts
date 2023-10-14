@@ -43,10 +43,17 @@ export interface UserServiceConfigOptions {
   port: number;
 }
 
+export interface Redis {
+  host: string;
+  port: number;
+}
+
 export interface ConfigData {
   env: string;
 
   port: number;
+
+  redis: Redis;
 
   db: ConfigDatabase;
 

@@ -1,0 +1,453 @@
+#app {
+    margin: 0 auto;
+    width: 95%;
+    min-height: 100vh;
+    max-width: 640px;
+}
+
+.body {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYwIiBoZWlnaHQ9IjEwMCIgdmVyc2lvbj0iMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGRlZnM+PHBhdGggaWQ9ImEiIGQ9Ik0wIDBoMzYwdjEwMEgweiIvPjxwYXRoIGlkPSJjIiBkPSJNMCAwaDM3NHYxODFIMHoiLz48bGluZWFyR3JhZGllbnQgeDE9IjAlIiB5MT0iMTcwJSIgeDI9IjAlIiB5Mj0iMCUiIGlkPSJlIj48c3RvcCBzdG9wLWNvbG9yPSIjN0VERUZGIiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzAwNDFCMSIgb2Zmc2V0PSIxMDAlIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiIgZmlsbD0iI2ZmZiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48ZyBtYXNrPSJ1cmwoI2IpIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOCAtNDMpIj48bWFzayBpZD0iZCIgZmlsbD0iI2ZmZiI+PHVzZSB4bGluazpocmVmPSIjYyIvPjwvbWFzaz48ZyBtYXNrPSJ1cmwoI2QpIj48cGF0aCBmaWxsPSIjRjRGOEZGIiBkPSJNLTQuNjExLTUuMzEyaDM4OS4zMjN2ODkuOTVMMjIuODkgMTMxLjE5N2wtMjcuNTAxLTE2LjIyNXoiLz48cGF0aCBmaWxsPSJ1cmwoI2UpIiBkPSJNMCAwaDM4OS4zMjR2MTI3Ljk3NGwtMjYuNjYyIDI0LjE3TDAgMTAxLjg4eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE1IC0xMCkiLz48L2c+PC9nPjwvZz48L2c+PC9zdmc+);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: center;
+    background-position-y: top;
+    margin-top: -23px;
+}
+
+#app-container {
+    margin: 24px 0;
+    position: relative;
+}
+
+#PaymentDetails {
+    background-color: #fff;
+}
+
+#PaymentDetails {
+    width: 90%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 24px;
+   
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+  
+}
+
+#PaymentDetails .card-details-container {
+    border-bottom-color: #d7e7fe;
+}
+
+#PaymentDetails .card-details-container {
+    border-bottom: 1px solid #d7e7fe;
+}
+#PaymentDetails>div>div {
+    padding: 24px 0;
+}
+
+#PaymentDetails .card-details-container .card-details {
+   
+    display: flex;
+ 
+   
+   
+    justify-content: space-between;
+   
+    align-items: flex-end;
+}
+
+#PaymentDetails .card-details-container .card-details div img {
+    height: 26px;
+    width: auto;
+}
+
+#PaymentDetails>div>div {
+    padding: 24px 0;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details {
+    width: 100%;
+    letter-spacing: 0;
+    /* font-size: 0; */
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail:first-child {
+    padding-left: 0;
+}
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail {
+    display: inline-block;
+    width: 33%;
+    vertical-align: top;
+    padding: 0 24px;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail>div span:first-child {
+    color: rgba(0,0,0,.54);
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail>div span:first-child {
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(0,0,0,.54);
+    text-transform: uppercase;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail>div span {
+    display: block;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail:nth-child(2) {
+    border-left-color: #d7e7fe;
+    border-right-color: #d7e7fe;
+}
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail:nth-child(2) {
+    border-left: 1px solid #d7e7fe;
+    border-right: 1px solid #d7e7fe;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail {
+    display: inline-block;
+    width: 33%;
+    vertical-align: top;
+    padding: 0 24px;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail>div span:first-child {
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(0,0,0,.54);
+    text-transform: uppercase;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail>div span:last-child {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: rgba(0,0,0,.87);
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail>div span {
+    display: block;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail {
+    display: inline-block;
+    width: 33%;
+    vertical-align: top;
+    padding: 0 24px;
+}
+
+#PaymentDetails .transaction-details-container .transaction-details .transaction-detail>div span:first-child {
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(0,0,0,.54);
+    text-transform: uppercase;
+}
+
+.ActionArea {
+    background-color: #f6faff;
+    border-color: #9cc2fd;
+}
+
+.ActionArea {
+    border: 1px solid #9cc2fd;
+    padding: 32px;
+   
+    margin: -1px auto 0;
+    
+    box-shadow: 8px 8px 8px 0 rgb(132 155 191 / 10%);
+    position: relative;
+    z-index: 1;
+}
+
+h4.puck {
+    position: relative;
+}
+.ActionArea#OTPActionArea .org-logo {
+    max-height: 32px;
+}
+
+.pull-right {
+    float: right;
+}
+
+.ActionArea p {
+    line-height: 24px;
+    font-size: 16px;
+    color: #646d8b;
+}
+
+.ActionArea p strong {
+    color: #000;
+}
+
+.ActionArea p strong {
+    font-weight: 600;
+    color: #000;
+}
+
+.ActionArea#OTPActionArea #otpForm input {
+    border-color: #528ff0;
+}
+
+.ActionArea#OTPActionArea #otpForm input {
+    height: 56px;
+}
+
+.ActionArea#OTPActionArea #otpForm input {
+    border: 1px solid #528ff0;
+    padding: 12px 18px;
+    line-height: 24px;
+    outline: none;
+    font-size: 20px;
+    vertical-align: top;
+    width: 50%;
+    max-width: 240px;
+    border-radius: 2px 0 0 2px;
+}
+
+.ActionArea#OTPActionArea #otpForm button {
+    height: 56px;
+}
+
+.ActionArea#OTPActionArea #otpForm button {
+    margin-left: -4px;
+}
+
+.ActionArea button {
+    border-color: #528ff0;
+}
+
+.ActionArea button {
+    background-color: #528ff0;
+    color: #fffffe;
+}
+
+.ActionArea button {
+    border: 1px solid #528ff0;
+    border-radius: 0 2px 2px 0;
+   
+    padding: 12px 52px;
+    cursor: pointer;
+    line-height: 28px;
+    font-size: 16px;
+    vertical-align: top;
+    
+    box-shadow: 4px 4px 8px 0 rgb(23 31 37 / 6%);
+}
+
+.ActionArea button span {
+    display: inline-block;
+    vertical-align: middle;
+    fill: #fff;
+}
+
+.ActionArea button svg {
+    fill: #fffffe;
+}
+
+ .ActionArea button svg {
+    display: inline-block;
+    vertical-align: middle;
+   
+}
+
+.ActionArea .actions-container {
+    margin-top: 24px;
+}
+
+.ActionArea .actions-container .user-action {
+    display: inline-block;
+    line-height: 20px;
+}
+
+
+
+.body a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #528ff0;
+    -webkit-transition: .2s linear;
+    -o-transition: .2s linear;
+    transition: .2s linear;
+}
+
+.ActionArea .actions-container .user-action:last-child:not(:first-child) {
+    border-left-color: #d7e7fe;
+}
+
+.ActionArea .actions-container .user-action:last-child:not(:first-child) {
+    margin-left: 8px;
+    padding-left: 12px;
+    border-left: 1px solid #d7e7fe;
+}
+
+.ActionArea .actions-container .user-action {
+    display: inline-block;
+    line-height: 20px;
+}
+
+#GoToBank {
+    width: 90%;
+    max-width: 560px;
+    text-align: center;
+    padding: 24px 12px;
+    margin: -4px auto 0;
+  
+    box-shadow: 0 6px 12px 0 rgb(0 0 0 / 10%);
+    background-color: #fff;
+}
+#GoToBank .or {
+    color: rgba(0,0,0,.54);
+}
+
+#GoToBank .or {
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+    line-height: 16px;
+    position: relative;
+}
+#GoToBank .or {
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+    line-height: 16px;
+    position: relative;
+}
+
+#GoToBank .gotobank-text>div {
+    display: inline-block;
+    padding-left: 20px;
+    position: relative;
+    text-align: left;
+}
+
+i.material-icons {
+    vertical-align: middle;
+    font-size: 1em;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+   
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+   
+    -webkit-font-smoothing: antialiased;
+}
+
+#GoToBank .gotobank-text>div {
+    display: inline-block;
+    padding-left: 20px;
+    position: relative;
+    text-align: left;
+}
+
+#GoToBank .gotobank-text>div p {
+    color: #646d8b;
+}
+
+#GoToBank .gotobank-text>div p {
+    margin: 4px 0;
+    color: #646d8b;
+}
+
+.footer-branding {
+    max-width: 614px;
+    margin: 48px auto;
+}
+
+.branding {
+    border-color: rgba(0,0,0,.08);
+}
+
+.branding {
+    background-color: #fff;
+}
+
+.branding {
+   
+    box-shadow: 8px 8px 16px 0 rgb(0 0 0 / 8%);
+    
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.08);
+   
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+.branding .branding-banks {
+    float: left;
+}
+
+.branding img {
+    max-height: 24px;
+    width: auto;
+}
+
+.branding .branding-logo {
+    float: right;
+    margin-top: 0;
+    clear: none;
+}
+
+.branding div {
+    color: rgba(65,65,65,.7);
+}
+
+.branding div {
+    
+    font-size: 12px;
+    line-height: 20px;
+  
+}
+
+.branding .branding-logo img {
+    vertical-align: middle;
+}
+
+.branding img {
+    max-height: 24px;
+    width: auto;
+}
+
+.branding div {
+    color: rgba(65,65,65,.7);
+}
+
+.branding div {
+    clear: both;
+    margin-top: 32px;
+    font-size: 12px;
+    line-height: 20px;
+    
+}
+
+.branding div a {
+    border-bottom-color: #528ff0;
+    color: #528ff0;
+}
+
+.branding div a {
+    color: #528ff0;
+    text-decoration: none;
+    border-bottom: 1px solid #528ff0;
+}

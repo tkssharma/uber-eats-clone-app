@@ -4,17 +4,22 @@ import {
   fetchRestaurants,
   topRestaurants,
 } from "../../redux/restaurant/restaurant.slice";
+import { useNavigate } from "react-router-dom";
 
 function HeadlineCards() {
   const dispatch = useDispatch();
   const {
     data,
   } = useSelector(topRestaurants);
+  const navigate = useNavigate();
 
   console.log(data);
   useEffect(() => {
     dispatch(fetchRestaurants());
   }, []);
+  const goTo = () => {
+    navigate("/eats/restaurants")
+  }
 
   return (
     <div className="max-w-[1640px] mx-auto py-12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -29,7 +34,7 @@ function HeadlineCards() {
                   {data.name}
                 </p>
                 <p className="px-2">{data.address}</p>
-                <button className="bg-orange-500 mx-auto center text-white justify-center p-2 m-1 rounded-full flex  center bottom-4">
+                <button onClick={() => goTo()} className="bg-orange-500 mx-auto center text-white justify-center p-2 m-1 rounded-full flex  center bottom-4">
                   Order Now
                 </button>
               </div>
