@@ -29,6 +29,9 @@ export class UserEntity extends BaseEntity {
   @Column({ type: "varchar", length: 500, nullable: true })
   public name!: string;
 
+  @Column({ type: "varchar", length: 500, nullable: true })
+  public mobno!: string;
+
   @Column({ type: "varchar", nullable: true, select: false })
   public refresh_token!: string;
 

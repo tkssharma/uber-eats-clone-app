@@ -26,6 +26,7 @@ export class ConfigService {
       swagger: this.parseSwaggerConfig(env, DEFAULT_CONFIG.swagger),
       aws: this.parseAWSConfig(env, DEFAULT_CONFIG.aws),
       logLevel: env.LOG_LEVEL!,
+      userServiceUrl: env.USER_SERVICE_API_URL!,
       auth: {
         expiresIn: Number(env.TOKEN_EXPIRY),
         access_token_secret: env.JWT_ACCESS_TOKEN_SECRET!,

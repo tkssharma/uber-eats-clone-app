@@ -55,6 +55,8 @@ export interface ConfigData {
 
   redis: Redis;
 
+  userServiceUrl: string;
+
   db: ConfigDatabase;
 
   swagger: ConfigSwagger;

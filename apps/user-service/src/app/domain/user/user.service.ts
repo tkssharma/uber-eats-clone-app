@@ -8,6 +8,8 @@ import * as bcrypt from "bcrypt";
 import {
   fieldsToUpdateDto,
   FindUserDto,
+  GetPartnerAvailabulity,
+  GetPartnerbyId,
   UpdateUserByIdDto,
   UpdateUserPermissionBodyDto,
   UserSignupDto,
@@ -15,6 +17,8 @@ import {
 import { UserEntity } from "./entity/user.entity";
 import { AuthService } from "../auth/auth.service";
 import { NotFoundException } from "@nestjs/common";
+import { UserRoles } from "@eats/types";
+import { DeliveryPartnerEntity } from "./entity/delivery-partner.entity";
 
 @Injectable()
 export class UserService {
@@ -22,6 +26,9 @@ export class UserService {
     private readonly logger: Logger,
     private readonly authService: AuthService,
     @InjectRepository(UserEntity) private userRepo: Repository<UserEntity>,
+    @InjectRepository(DeliveryPartnerEntity)
+    private partnerRepo: Repository<DeliveryPartnerEntity>,
+
     private configService: ConfigService
   ) {}
 
@@ -118,6 +125,33 @@ export class UserService {
     return users;
   }
 
+  async updatePartnerAvailabulity(
+    param: GetPartnerbyId,
+    body: GetPartnerAvailabulity
+  ) {
+    const { id } = param;
+    const { availability } = body;
+    const partner = await this.partnerRepo.findOne({
+      where: {
+        id,
+      },
+    });
+    if (!partner) {
+      throw new NotFoundException();
+    }
+    partner.availability = availability;
+    return await this.partnerRepo.save(partner);
+  }
+
+  async fetchAvailablePartner() {
+    const user = await this.userRepo.findOne({
+      where: {
+        permissions: "delivery-partner",
+      },
+    });
+    return user;
+  }
+
   async assignUserPermissions(
     param: UpdateUserByIdDto,
     payload: UpdateUserPermissionBodyDto
@@ -132,6 +166,20 @@ export class UserService {
       throw new NotFoundException();
     }
     user.permissions = payload.permissions;
+    if (payload.permissions === UserRoles["delivery-partner"]) {
+      const userPartner = await this.partnerRepo.find({
+        where: {
+          user: { id: user.id },
+        },
+      });
+      if (!userPartner) {
+        // create partner profile
+        await this.partnerRepo.save({
+          user,
+          availability: true,
+        });
+      }
+    }
     return await user.save();
   }
 

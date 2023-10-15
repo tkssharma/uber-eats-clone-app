@@ -43,6 +43,7 @@ export interface ConfigData {
     env: string;
     port: number;
     redis: Redis;
+    userServiceUrl: string;
     db: ConfigDatabase;
     swagger: ConfigSwagger;
     logLevel: string;

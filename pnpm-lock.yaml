@@ -303,6 +303,9 @@ importers:
       amqplib:
         specifier: ^0.10.3
         version: 0.10.3
+      axios:
+        specifier: ^1.5.1
+        version: 1.5.1(debug@4.3.4)
       bcrypt:
         specifier: ^5.1.0
         version: 5.1.1
@@ -331,7 +334,7 @@ importers:
         specifier: 2.2.2
         version: 2.2.2
       moment:
-        specifier: ^2.29.1
+        specifier: ^2.29.4
         version: 2.29.4
       parse-domain:
         specifier: 4.1.0
@@ -1010,7 +1013,7 @@ importers:
         version: 13.1.5
       axios:
         specifier: ^1.5.1
-        version: 1.5.1
+        version: 1.5.1(debug@4.3.4)
       classnames:
         specifier: ^2.3.2
         version: 2.3.2
@@ -1294,7 +1297,7 @@ importers:
         version: 9.8.8
       axios:
         specifier: ^1.5.1
-        version: 1.5.1
+        version: 1.5.1(debug@4.3.4)
       framer-motion:
         specifier: ^10.16.4
         version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
@@ -11600,13 +11603,13 @@ packages:
     engines: { node: ">=4" }
     dev: false
 
-  /axios@1.5.1:
+  /axios@1.5.1(debug@4.3.4):
     resolution:
       {
         integrity: sha512-Q28iYCWzNHjAm+yEAot5QaAMxhMghWLFVf7rRdwhUI+c2jix2DUXjAHXVi+s1ibs3mjPO/cCgbA++3BjD0vP/A==,
       }
     dependencies:
-      follow-redirects: 1.15.3
+      follow-redirects: 1.15.3(debug@4.3.4)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -16710,7 +16713,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /follow-redirects@1.15.3:
+  /follow-redirects@1.15.3(debug@4.3.4):
     resolution:
       {
         integrity: sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==,
@@ -16721,6 +16724,8 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dependencies:
+      debug: 4.3.4
 
   /for-each@0.3.3:
     resolution:
@@ -17846,7 +17851,7 @@ packages:
     engines: { node: ">=8.0.0" }
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.3
+      follow-redirects: 1.15.3(debug@4.3.4)
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -22360,7 +22365,7 @@ packages:
       "@yarnpkg/lockfile": 1.1.0
       "@yarnpkg/parsers": 3.0.0-rc.46
       "@zkochan/js-yaml": 0.0.6
-      axios: 1.5.1
+      axios: 1.5.1(debug@4.3.4)
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1

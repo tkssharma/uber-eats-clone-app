@@ -12,8 +12,9 @@ exports.DEFAULT_CONFIG = {
         access_token_secret: "",
         refresh_token_secret: "",
     },
+    userServiceUrl: '',
     redis: {
-        host: 'localhost',
+        host: "localhost",
         port: 6379,
     },
     google: {

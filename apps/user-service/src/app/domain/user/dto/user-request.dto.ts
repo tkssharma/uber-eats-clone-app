@@ -13,6 +13,26 @@ import {
 import { Type as validateType } from "class-transformer";
 import { UserRoles } from "@eats/types";
 
+export class GetPartnerbyId {
+  @ApiProperty({
+    description: "id",
+    example: "id",
+    required: true,
+  })
+  @IsUUID()
+  @IsString()
+  public id!: string;
+}
+
+export class GetPartnerAvailabulity {
+  @ApiProperty({
+    description: "availability",
+    example: "availability",
+    required: true,
+  })
+  @IsString()
+  public availability!: boolean;
+}
 export class CreateAddressDto {
   @ApiProperty({
     description: "city",

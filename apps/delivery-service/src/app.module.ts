@@ -10,6 +10,8 @@ import { DeliveryController } from "./delivery.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ScheduleModule } from "@nestjs/schedule";
 import { DeliveryEventService } from "./domain/delivery-event.service";
+import HttpClientService from "./lib/http.client.service";
+import { UserProxyService } from "./domain/user.http.service";
 @Module({
   imports: [
     TerminusModule,
@@ -20,6 +22,12 @@ import { DeliveryEventService } from "./domain/delivery-event.service";
     }),
   ],
   controllers: [AppController, DeliveryController],
-  providers: [AppService, DeliveryService, DeliveryEventService],
+  providers: [
+    AppService,
+    DeliveryService,
+    DeliveryEventService,
+    UserProxyService,
+    HttpClientService,
+  ],
 })
 export class AppModule {}
