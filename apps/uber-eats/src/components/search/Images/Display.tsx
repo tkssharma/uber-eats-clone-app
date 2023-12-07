@@ -2,27 +2,34 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { fetchRestaurantById } from "../../../redux/restaurant/restaurant.slice";
 
-function Display({ restaurant }: any) {
+function Display({ dish }: any) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
   const handleNavigate = () => {
-     navigate(`/restaurants/${restaurant.id}`)
+    // on click mark restaurant selected 
+     dispatch(fetchRestaurantById(dish.restaurant.id));
+     navigate(`/eats/restaurants/${dish.restaurant.id}`)
   }
-	return !restaurant ? null : (
+	return !dish ? null : (
 		<div
-			key={restaurant.id}
-			className='h-56 m-5 bg-white rounded-[20px] p-8'>
-			{/* <Link to={`/restaurants/${dish.restaurant[0]}`}> */}
+			key={dish.id}
+			className='m-5 h-90 bg-white rounded-[20px] p-8'>
+			{/* <Link to={`/restaurants/${dish.dish[0]}`}> */}
 			<div
 				onClick={handleNavigate}
 				className='hidden md:block'>
+          <img className='text-sm mb-4 rounded-md' src={dish.thumbnails} />
 				<h1 className='text-lg leading-5 font-bold first-letter:capitalize'>
-					{restaurant.name}
+					{dish.name}
 				</h1>
-				<p className='text-sm mb-4'>{restaurant.description}</p>
-        <img className='text-sm mb-4 rounded-md' src={restaurant.thumbnails[0]} />
+				<h6 className='text-sm mb-4'>{dish.description.substr(0,80)}</h6>
+        <button className="bg-green-700 text-white p-3 w-full mt-5 text-lg">
+              View More
+         </button>
+        
 			</div>
 
 			{/* </Link> */}

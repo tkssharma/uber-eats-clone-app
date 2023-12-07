@@ -6,7 +6,7 @@ import {
 import { InjectRepository } from "@nestjs/typeorm";
 import { ConfigService } from "@eats/config";
 import { Logger } from "@eats/logger";
-import { Like, Repository, Connection, QueryRunner } from "typeorm";
+import { Like, Repository, Connection, QueryRunner, Brackets } from "typeorm";
 import * as bcrypt from "bcrypt";
 
 import { NotFoundException } from "@nestjs/common";
@@ -21,9 +21,12 @@ import { UserMetaData } from "../../auth/guards/user";
 import { RestaurantDishEntity } from "../entity/restaurant.dish.entity";
 import {
   CreateRestaurantDishBodyDto,
+  OrderBy,
   RestaurantParamParamDto,
+  SearchDishQueryDto,
   UpdateDishItemParamDto,
   UpdateRestaurantDishBodyDto,
+  filterType,
 } from "../dto/restaurant.dish.dto";
 import { EventEmitter2 } from "@nestjs/event-emitter";
 
@@ -55,6 +58,54 @@ export class RestaurantDishService {
       throw new ForbiddenException();
     }
     return restaurant;
+  }
+  async listRestaurantDish(param: SearchDishQueryDto) {
+    const { search_text, page, limit, filter_type, order_by, food_type } =
+      param;
+    const offset = limit * (page - 1);
+    const query = this.connection
+      .getRepository(RestaurantDishEntity)
+      .createQueryBuilder("restaurant_dishes")
+      .leftJoinAndSelect("restaurant_dishes.restaurant", "restaurant");
+
+    if (search_text) {
+      query.andWhere(
+        new Brackets((qb) => {
+          qb.where("restaurant_dishes.name like :name", {
+            name: `%${search_text}%`,
+          })
+            .orWhere("restaurant_dishes.description like :description", {
+              description: `%${search_text}%`,
+            })
+            .orWhere("restaurant_dishes.name like :ingredients", {
+              ingredients: `%${search_text}%`,
+            });
+        })
+      );
+    }
+    if (food_type) {
+      query.andWhere("restaurant_dishes.food_type = :food_type", {
+        food_type: `${food_type}`,
+      });
+    }
+    if (filter_type === filterType.price) {
+      query.orderBy(
+        "restaurant_dishes.price",
+        order_by ? (order_by as OrderBy) : "ASC"
+      );
+    } else if (filter_type === filterType.delivery_time) {
+      query.orderBy(
+        "restaurant_dishes.delivery_time",
+        order_by ? (order_by as OrderBy) : "ASC"
+      );
+    } else if (filter_type === filterType.rating) {
+      query.orderBy(
+        "restaurant_dishes.rating",
+        order_by ? (order_by as OrderBy) : "ASC"
+      );
+    }
+    const data = await query.skip(offset).limit(limit).getMany();
+    return data;
   }
   async findDishById(id: string) {
     const dish = await this.restaurantDishRepo.findOne({

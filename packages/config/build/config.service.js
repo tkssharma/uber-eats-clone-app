@@ -17,11 +17,16 @@ let ConfigService = class ConfigService {
             port: parseInt(env.PORT, 10),
             db: this.parseDBConfig(env, config_default_1.DEFAULT_CONFIG.db),
             swagger: this.parseSwaggerConfig(env, config_default_1.DEFAULT_CONFIG.swagger),
+            aws: this.parseAWSConfig(env, config_default_1.DEFAULT_CONFIG.aws),
             logLevel: env.LOG_LEVEL,
             auth: {
                 expiresIn: Number(env.TOKEN_EXPIRY),
                 access_token_secret: env.JWT_ACCESS_TOKEN_SECRET,
                 refresh_token_secret: env.JWT_REFRESH_TOKEN_SECRET,
+            },
+            redis: {
+                host: env.REDIS_HOST,
+                port: Number(env.REDIS_PORT),
             },
             google: {
                 oauth_google_id: env.OAUTH_GOOGLE_ID,
@@ -39,6 +44,14 @@ let ConfigService = class ConfigService {
     parseDBConfig(env, defaultConfig) {
         return {
             url: env.DATABASE_URL || defaultConfig.url,
+        };
+    }
+    parseAWSConfig(env, defaultConfig) {
+        return {
+            accessKeyId: env.AWS_ACCESS_KEY_ID || defaultConfig.accessKeyId,
+            secretAccessKey: env.AWS_SECRET_ACCESS_KEY || defaultConfig.secretAccessKey,
+            region: env.AWS_REGION || defaultConfig.region,
+            bucket: env.S3_BUCKET || defaultConfig.bucket,
         };
     }
     parseSwaggerConfig(env, defaultConfig) {

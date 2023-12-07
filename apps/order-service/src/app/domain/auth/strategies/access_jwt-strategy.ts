@@ -14,7 +14,17 @@ const error = debug("eats-restaurant:verbose:handler");
 export class AccessTokenJwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly configService: ConfigService) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      // get token from cookies doe cart services
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (request: any) => {
+          console.log(request.cookies);
+          let data = request?.cookies["access_token"];
+          if (!data) {
+            return null;
+          }
+          return data;
+        },
+      ]),
       secretOrKey: configService.get().auth.access_token_secret,
     });
   }

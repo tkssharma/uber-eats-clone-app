@@ -107,9 +107,9 @@ export class SearchQueryDto {
   @ApiProperty({
     description: "search_text",
     example: "",
-    required: true,
+    required: false,
   })
-  @IsDefined()
+  @IsOptional()
   @IsString()
   public search_text!: string;
 

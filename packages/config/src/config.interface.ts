@@ -25,6 +25,13 @@ export interface ElasticConfig {
   index?: string;
 }
 
+export interface AWSConfig {
+  accessKeyId: string;
+  secretAccessKey: string;
+  region: string;
+  bucket?: string;
+}
+
 export interface GoogleConfig {
   oauth_google_id: string;
   oauth_google_callback: string;
@@ -36,10 +43,17 @@ export interface UserServiceConfigOptions {
   port: number;
 }
 
+export interface Redis {
+  host: string;
+  port: number;
+}
+
 export interface ConfigData {
   env: string;
 
   port: number;
+
+  redis: Redis;
 
   db: ConfigDatabase;
 
@@ -48,6 +62,8 @@ export interface ConfigData {
   logLevel: string;
 
   auth: AuthConfig;
+
+  aws: AWSConfig;
 
   google: GoogleConfig;
 

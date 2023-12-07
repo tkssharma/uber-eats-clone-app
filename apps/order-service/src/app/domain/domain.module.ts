@@ -5,25 +5,39 @@ import { AppLoggerModule } from "@eats/logger";
 import { DBModule } from "@eats/database";
 import { EventEmitterModule } from "@nestjs/event-emitter";
 import { AuthModule } from "./auth/auth.module";
-import { CartEntity } from "./cart/entity/cart.entity";
+import { OrderEntity } from "./order/entity/order.entity";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { CartController } from "./cart/controller/cart.controller";
-import { CartService } from "./cart/services/cart.service";
+import { OrderController } from "./order/controller/order.controller";
+import { OrderService } from "./order/services/order.service";
+import { ClientsModule, Transport } from "@nestjs/microservices";
 
 @Module({
   imports: [
+    ClientsModule.register([
+      {
+        name: "ORDER_LISTENER_SERVICE",
+        transport: Transport.RMQ,
+        options: {
+          urls: ["amqp://guest:guest@localhost:5672/admin"],
+          queue: "order-messages",
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
+    ]),
     AuthModule,
     EventEmitterModule.forRoot(),
-    TypeOrmModule.forFeature([CartEntity]),
+    TypeOrmModule.forFeature([OrderEntity]),
     DBModule.forRoot({
-      entities: [CartEntity],
+      entities: [OrderEntity],
     }),
     TerminusModule,
     AppLoggerModule,
     ConfigModule,
   ],
 
-  controllers: [CartController],
-  providers: [CartService],
+  controllers: [OrderController],
+  providers: [OrderService],
 })
 export class DomainModule {}

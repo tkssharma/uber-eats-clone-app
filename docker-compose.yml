@@ -12,6 +12,9 @@ services:
   postgres-delivery:
     image: postgres
     restart: unless-stopped
+  postgres-files:
+    image: postgres
+    restart: unless-stopped
   postgres-restaurant:
     image: postgres
     restart: unless-stopped
@@ -19,4 +22,6 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
   kibana:
     image: docker.elastic.co/kibana/kibana:7.11.0
+  rmq-listerner:
+    image: rabbitmq:3-management-alpine
   

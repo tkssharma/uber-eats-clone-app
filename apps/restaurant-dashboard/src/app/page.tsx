@@ -12,6 +12,8 @@ export default function Home() {
   const user = session?.user;
 
 
+
+
   return (
     <html lang="en">
       <body>

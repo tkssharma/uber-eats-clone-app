@@ -146,6 +146,12 @@ export class SearchService {
             operator: "or",
           },
         });
+      } else {
+        return {
+          query: {
+            match_all: { boost: "1.0" },
+          },
+        };
       }
       return {
         query: {

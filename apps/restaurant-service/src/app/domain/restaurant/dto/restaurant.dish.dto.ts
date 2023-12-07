@@ -19,6 +19,16 @@ import {
 import { Type as validateType } from "class-transformer";
 import { UserRoles } from "@eats/types";
 
+export enum filterType {
+  "price" = "price",
+  "rating" = "rating",
+  "delivery_time" = "delivery_time",
+}
+export enum OrderBy {
+  "ASC" = "ASC",
+  "DESC" = "DESC",
+}
+
 export enum mealType {
   "breakfast" = "breakfast",
   "lunch" = "lunch",
@@ -35,6 +45,69 @@ export enum foodType {
   "veg" = "veg",
   "non_veg" = "non_veg",
   "vegan" = "vegan",
+  "fast_food" = "fast_food",
+}
+
+export class SearchDishQueryDto {
+  @ApiProperty({
+    description: "search_text",
+    example: "paneer tikka",
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  @IsDefined()
+  public search_text!: string;
+
+  @ApiProperty({
+    description: "foodType",
+    required: false,
+    enum: foodType,
+    example: foodType.veg,
+  })
+  @IsOptional()
+  @IsEnum(foodType)
+  public food_type!: string;
+
+  @ApiProperty({
+    description: "filterType",
+    required: false,
+    enum: filterType,
+    example: filterType.price,
+  })
+  @IsOptional()
+  @IsEnum(filterType)
+  public filter_type!: string;
+
+  @ApiProperty({
+    description: "OrderBy",
+    required: false,
+    enum: OrderBy,
+    example: OrderBy.ASC,
+  })
+  @IsOptional()
+  @IsEnum(OrderBy)
+  public order_by!: string;
+
+  @ApiProperty({
+    description: "page count",
+    example: "1",
+    required: false,
+  })
+  @Transform(() => Number())
+  @IsOptional()
+  @IsNumber()
+  public page!: number;
+
+  @ApiProperty({
+    description: "limit per page",
+    example: "10",
+    required: false,
+  })
+  @Transform(() => Number())
+  @IsOptional()
+  @IsNumber()
+  public limit!: number;
 }
 
 export class RestaurantParamParamDto {
@@ -132,14 +205,13 @@ export class CreateRestaurantDishBodyDto {
 
   @ApiProperty({
     description: "thumbnails",
-    example: ["https://google.com/banner.png"],
+    example:
+      "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/18301f1b90116218438a5e6a82336d15",
     required: true,
   })
+  @IsString()
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  @ArrayMinSize(1)
-  public thumbnails!: string[];
+  public thumbnails!: string;
 }
 
 export class UpdateRestaurantDishBodyDto extends PartialType(

@@ -12,6 +12,7 @@ import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../landing-page/navbar";
+import { filteredDishes, filteredRestaurants } from "../../redux/restaurant/restaurant.slice";
 
 const filtersApplied: any = {};
 const Search = () => {
@@ -22,6 +23,8 @@ const Search = () => {
 	const debounceRef: any = useRef(null);
 	const [sort, setSort] = useState("");
 	const [isSortBox, setIsSortBox] = useState(false);
+  const storeDispatch = useDispatch();
+  const { data: filteredDishesData } = useSelector(filteredDishes);
 
 	function handleVoiceSearch() {
 	}
@@ -54,7 +57,7 @@ const Search = () => {
 		if (debounceRef.current) clearTimeout(debounceRef.current);
 		debounceRef.current = setTimeout(() => {
 			(async () => {
-				// dispatch(filterRestaurants(dishSearch))
+        storeDispatch(filteredRestaurants(`search_text=${dishSearch}`))
 			})();
 		}, 700);
 	}, [dishSearch, filters, sort]);
@@ -225,12 +228,12 @@ const Search = () => {
 					</div>
 					<br />
 					<div className='w-full max-w-[950px] mx-auto '>
-						{dishSearch.length > 0 && (
+						{filteredDishesData.length > 0 && (
 							<div className='grid grid-cols-3 md:grid-cols-3 '>
-								{[].map((dish: any) => (
+								{filteredDishesData.map((dish: any) => (
 									<Display
 										key={dish.id}
-										restaurant={dish}
+										dish={dish}
 									/>
 								))}
 							</div>

@@ -4,8 +4,7 @@ import Header from './components/landing-page/navbar';
 import SignIn from './routes/signin';
 import SignUp from './routes/signup';
 import Search from './routes/search';
-
-import { LeftSideBar, RightSideBar } from './components/restaurant-pages'
+import CheckoutPage from "./routes/checkout"
 
 import LandingPage from "./routes/landing";
 import RestaurantPage from "./routes/restaurant";
@@ -15,6 +14,9 @@ import './styles/tailwind.css';
 import { useState } from 'react';
 import { UserContext } from './hooks/user-context';
 import FetchUser from './hooks/fetch-user';
+import LeftSideBar from './components/restaurant-pages/left-side-bar';
+import RightSideBar from './components/restaurant-pages/right-side-bar';
+import TrackOrderPage from './components/track-order/track-order';
 
 {/* Left side bar */}
 
@@ -37,12 +39,12 @@ function AppLayout(){
     <LeftSideBar />
 
     {/* Middle Section for children */}
-    <div className=" ml-32 mr-96">
+    <div className=" ml-32 w-full">
       <Outlet />
     </div>
 
+   <RightSideBar />
     {/* Right side bar */}
-    <RightSideBar />
 </div>
   )
 }
@@ -54,6 +56,7 @@ const App = () => {
     setUser, 
     isLoading } = FetchUser();
   return (
+    
     <UserContext.Provider value={{user, 
       setUser, 
       isLoading}}>
@@ -64,12 +67,18 @@ const App = () => {
           <Route path="/home" element={<LandingPage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/search" element={<Search />} />
-
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route path="/pages" element={<AppLayout />}>
-          <Route index element={<RestaurantPage />} />
+        <Route path="/eats" element={<AppLayout />}>
+          <Route path="" element={<RestaurantPage />} />
           <Route path="restaurants" element={<RestaurantPage />} />
+          <Route path="restaurants/:id" element={<RestaurantPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="track" element={<TrackOrderPage />} />
+          <Route path="settings" element={<RestaurantPage />} />
+          <Route path="chat" element={<RestaurantPage />} />
+          <Route path="fav" element={<RestaurantPage />} />
+          <Route path="payments" element={<RestaurantPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

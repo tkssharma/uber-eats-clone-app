@@ -1,4 +1,3 @@
-import { MenuItem } from "@eats/types";
 import {
   BaseEntity,
   Column,
@@ -15,17 +14,17 @@ export class CartEntity extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   public id!: string;
 
-  @Column({ type: "uuid", select: true })
+  @Column({ type: "varchar", select: true })
   public user_id!: string;
 
   @Column({ type: "uuid", select: true })
   public restaurant_id!: string;
 
+  @Column({ type: "jsonb", select: true })
+  public restaurant!: any;
+
   @Column({ type: "jsonb", default: null })
   public menu_items!: MenuItemBodyDto[];
-
-  @Column({ type: "int", default: null })
-  public count!: number;
 
   @CreateDateColumn({
     type: "timestamptz",

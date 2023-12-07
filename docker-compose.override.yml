@@ -1,5 +1,13 @@
 version: '3'
 services:
+  rmq-listerner:
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+
   postgres-user:
     environment:
       - POSTGRES_USER=api
@@ -31,7 +39,18 @@ services:
       - ./docker-utils:/docker-entrypoint-initdb.d
       - delivery_api_data:/data/postgres
     ports:
-      - 5439:5432  
+      - 5439:5432 
+
+  postgres-files:
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="files-api","files-api-testing"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - delivery_api_data:/data/postgres
+    ports:
+      - 5421:5432  
 
   postgres-order:
     environment:

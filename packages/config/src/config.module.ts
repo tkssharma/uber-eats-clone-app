@@ -1,5 +1,6 @@
-import { Module } from "@nestjs/common";
+import { Global, Module } from "@nestjs/common";
 import { ConfigService } from "./config.service";
+import { ConfigService_ } from "./config.service_";
 
 const configFactory = {
   provide: ConfigService,
@@ -10,10 +11,11 @@ const configFactory = {
   },
 };
 
+@Global()
 @Module({
   imports: [],
   controllers: [],
-  providers: [configFactory],
-  exports: [configFactory],
+  providers: [configFactory, ConfigService_],
+  exports: [configFactory, ConfigService_],
 })
 export class ConfigModule {}

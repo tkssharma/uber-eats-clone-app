@@ -98,21 +98,6 @@ export class CartController {
   @ApiInternalServerErrorResponse({ description: INTERNAL_SERVER_ERROR })
   @UseGuards(AccessTokenGuard)
   @Put("/")
-  public async updateUserCart(
-    @User() user: UserMetaData,
-    @Body() payload: UpdateCartMenuItemBodyDto
-  ) {
-    return await this.service.updateCartMenuItem(user, payload);
-  }
-
-  @HttpCode(HttpStatus.CREATED)
-  @ApiConsumes("application/json")
-  @ApiNotFoundResponse({ description: NO_ENTITY_FOUND })
-  @ApiForbiddenResponse({ description: UNAUTHORIZED_REQUEST })
-  @ApiUnprocessableEntityResponse({ description: BAD_REQUEST })
-  @ApiInternalServerErrorResponse({ description: INTERNAL_SERVER_ERROR })
-  @UseGuards(AccessTokenGuard)
-  @Delete("/")
   public async deleteUserMenuItemCart(
     @User() user: UserMetaData,
     @Body() payload: UpdateCartMenuItemBodyDto

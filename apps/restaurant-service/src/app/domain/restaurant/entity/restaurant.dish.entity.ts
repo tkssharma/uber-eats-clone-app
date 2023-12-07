@@ -37,11 +37,17 @@ export class RestaurantDishEntity extends BaseEntity {
   @Column({ type: "varchar", default: null })
   public ingredients!: string;
 
-  @Column({ type: "jsonb", default: null })
-  public thumbnails!: any;
+  @Column({ type: "varchar", default: null })
+  public thumbnails!: string;
 
   @Column({ type: "integer" })
   public price!: number;
+
+  @Column({ type: "integer", default: null })
+  public delivery_time!: number;
+
+  @Column({ type: "integer", default: null })
+  public rating!: number;
 
   @ManyToOne(() => RestaurantEntity, (event) => event.dishes)
   @JoinColumn({ name: "restaurant_id", referencedColumnName: "id" })
